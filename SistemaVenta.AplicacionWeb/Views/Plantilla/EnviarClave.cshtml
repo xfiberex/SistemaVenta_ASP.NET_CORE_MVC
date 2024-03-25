@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EnviarClave</title>
+    
+    <style>
+        body {
+            background-color: #EDF6FF;
+            height: 80vh; /* Altura del viewport */
+            display: flex; /* Habilitar centrado vertical */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .container {
+            width: 400px;
+            border-radius: 10px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px #DEDEDE;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #004DAF;
+        }
+
+        h4 {
+            color: #004DAF;
+            margin: 2px;
+        }
+
+        .warning {
+            background-color: #FFE1CE;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+            .warning p {
+                margin: 0;
+                color: #F45E00;
+            }
+
+
+        .btnIniciar {
+            color: white;
+            background-color: #004DAF;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btnIniciar:hover {
+                background-color: #002e6c;
+            }
+
+        .align-bottom {
+            text-align: center;
+        }
+
+        .TextoFooter {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <div class="container" style="font-family: 'Segoe UI'">
+        <h2 style="text-align: center">Bienvenido</h2>
+        <p>Se creó exitosamente tu usuario. Los detalles de tu cuenta son:</p>
+        <h4>Correo:</h4>
+        <p>@ViewData["Correo"]</p>
+        <h4>Contraseña:</h4>
+        <p>@ViewData["Clave"]</p>
+        <div class="warning">
+            <p>Le recomendamos cambiar la contraseña una vez inicie sesión.</p>
+        </div>
+        <p class="TextoFooter">Presione aquí, para ingresar:</p>
+        <br />
+        <div class="align-bottom">
+            <a href="@ViewData["Url"]" class="btnIniciar">Iniciar Sesión</a>
+        </div>
+    </div>
+    <br />
+    <br />
+</body>
+</html>
