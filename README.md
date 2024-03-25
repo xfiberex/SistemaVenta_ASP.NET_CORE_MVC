@@ -17,7 +17,7 @@ El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso,
 - Ventas: Proceso de venta de productos, registro de ventas realizadas.
 - Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
 
-## Tecnologías Utilizadas
+## Tecnologías
 
 ### Backend:
 
