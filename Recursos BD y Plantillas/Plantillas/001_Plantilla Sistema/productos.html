@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    
+
+    <!-- ============================================================
+    =ESTILOS PARA ESTA PAGINA
+    ===============================================================-->
+    <link rel="stylesheet" href="vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">MI TIENDA</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Nav Item - Admnistración Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
+                    aria-expanded="true" aria-controls="collapseAdministracion">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Admnistración</span>
+                </a>
+                <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="usuarios.html">Usuarios</a>
+                        <a class="collapse-item" href="negocio.html">Negocio</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Inventario Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                    aria-expanded="true" aria-controls="collapseInventario">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Inventario</span>
+                </a>
+                <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="categorias.html">Categorias</a>
+                        <a class="collapse-item" href="productos.html">Productos</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Venta Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta"
+                    aria-expanded="true" aria-controls="collapseVenta">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Ventas</span>
+                </a>
+                <div id="collapseVenta" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="nueva_venta.html">Nueva Venta</a>
+                        <a class="collapse-item" href="historial_venta.html">Historial Venta</a>
+                    </div>
+                </div>
+            </li>
+
+             <!-- Nav Item - Reportes Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
+                    aria-expanded="true" aria-controls="collapseReportes">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reportes</span>
+                </a>
+                <div id="collapseReportes" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="reporte_venta.html">Reporte de Ventas</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="perfil.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 bg-second-primary">
+                                    <h6 class="m-0 font-weight-bold text-white">Lista de Productos</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-plus-circle"></i> Nuevo Producto</button>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Imagen</th>
+                                                            <th>Codigo Barra</th>
+                                                            <th>Marca</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Categoria</th>
+                                                            <th>Stock</th>
+                                                            <th>Precio</th>
+                                                            <th>Estado</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300" class="rounded mx-auto d-block" /></td>
+                                                            <td>12312312</td>
+                                                            <td>Marca 1</td>
+                                                            <td>Descripcion 1</td>
+                                                            <td>Categoria 1</td>
+                                                            <td>120</td>
+                                                            <td>120</td>
+                                                            <td><span class="badge badge-info">Activo</span></td>
+                                                            <td>
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300" class="rounded mx-auto d-block"/></td>
+                                                            <td>12312312</td>
+                                                            <td>Marca 2</td>
+                                                            <td>Descripcion 2</td>
+                                                            <td>Categoria 2</td>
+                                                            <td>100</td>
+                                                            <td>140</td>
+                                                            <td><span class="badge badge-danger">No Activo</span></td>
+                                                            <td>
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!--  Modal-->
+                    <div class="modal fade" id="modalData" tabindex="-1" role="dialog"aria-hidden="true" data-backdrop="static">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6>Detalle Producto</h6>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <input type="hidden" value="0" id="txtId">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-row">
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtCodigoBarra">Codigo Barra</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtCodigoBarra" name="Codigo Barra">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtMarca">Marca</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtMarca" name="Marca">
+                                                        </div>
+                                                </div>
+                                                <div class="form-row">
+                                                        <div class="form-group col-sm-12">
+                                                            <label for="txtDescripcion">Descripcion</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtDescripcion" name="Descripcion">
+                                                        </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="cboCategoria">Categoria</label>
+                                                        <select class="form-control form-control-sm" id="cboCategoria">
+                                                            <option value="0">seleccionar</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="txtStock">Stock</label>
+                                                        <input type="text" class="form-control form-control-sm input-validar" id="txtStock" name="Stock">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="txtPrecio">Precio</label>
+                                                        <input type="text" class="form-control form-control-sm input-validar" id="txtPrecio" name="Precio">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="cboEstado">Estado</label>
+                                                        <select class="form-control form-control-sm" id="cboEstado">
+                                                            <option value="1">Activo</option>
+                                                            <option value="0">No Activo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="txtImagen">Imagen</label>
+                                                        <input class="form-control-file" type="file" id="txtImagen"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <img id="imgProducto" style="max-width:200px;" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300" class="rounded mx-auto d-block" alt="...">
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
+                                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.js"></script>
+
+   
+
+    <!-- ============================================================
+    =SCRIPTS PARA ESTA PAGINA
+    ===============================================================-->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <!-- SOLO ES DE EJEMPLO - IGNORAR -->
+    <script src="js/vistas/datatables-demo.js"></script>
+
+</body>
+
+</html>

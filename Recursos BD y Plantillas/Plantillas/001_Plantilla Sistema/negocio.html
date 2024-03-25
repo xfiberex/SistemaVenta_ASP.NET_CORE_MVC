@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">MI TIENDA</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+
+            <!-- Nav Item - Admnistración Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion"
+                    aria-expanded="true" aria-controls="collapseAdministracion">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Admnistración</span>
+                </a>
+                <div id="collapseAdministracion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="usuarios.html">Usuarios</a>
+                        <a class="collapse-item" href="negocio.html">Negocio</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Inventario Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario"
+                    aria-expanded="true" aria-controls="collapseInventario">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Inventario</span>
+                </a>
+                <div id="collapseInventario" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="categorias.html">Categorias</a>
+                        <a class="collapse-item" href="productos.html">Productos</a>
+                    </div>
+                </div>
+            </li>
+
+           <!-- Nav Item - Venta Collapse Menu -->
+           <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta"
+                    aria-expanded="true" aria-controls="collapseVenta">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Ventas</span>
+                </a>
+                <div id="collapseVenta" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="nueva_venta.html">Nueva Venta</a>
+                        <a class="collapse-item" href="historial_venta.html">Historial Venta</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Reportes Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
+                    aria-expanded="true" aria-controls="collapseReportes">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reportes</span>
+                </a>
+                <div id="collapseReportes" class="collapse" aria-labelledby="headingInventario" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="reporte_venta.html">Reporte de Ventas</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="perfil.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 bg-second-primary">
+                            <h6 class="m-0 font-weight-bold text-white">Datos del Negocio</h6>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-row">
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtNumeroDocumento">Numero Documento</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtNumeroDocumento" name="Numero Documento">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtCorreo">Razon Social</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtRazonSocial" name="Razon Social">
+                                                        </div>
+                                                </div>
+                                                <div class="form-row">
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtCorreo">Correo</label>
+                                                            <input type="email" class="form-control form-control-sm input-validar" id="txtCorreo" name="Correo">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtDireccion">Direccion</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtDireccion" name="Direccion">
+                                                        </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="txTelefono">Telefono</label>
+                                                        <input type="text" class="form-control form-control-sm input-validar" id="txTelefono" name="Telefono">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="txtImpuesto">% Impuesto</label>
+                                                        <input type="text" class="form-control form-control-sm input-validar" id="txtImpuesto" name="Impuesto">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtSimboloMoneda">Simbolo Moneda</label>
+                                                            <input type="text" class="form-control form-control-sm input-validar" id="txtSimboloMoneda" name="Simbolo Moneda">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="txtLogo">Logo</label>
+                                                            <input class="form-control-file" type="file" id="txtLogo" />
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <img id="imgLogo" style="max-width:200px;" src="https://images.unsplash.com/photo-1640271443625-3276ed8f62b5?w=300" class="rounded" alt="Logo">
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button class="btn btn-success btn-sm" type="button" id="btnGuardarCambios">Guardar Cambios</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+    
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

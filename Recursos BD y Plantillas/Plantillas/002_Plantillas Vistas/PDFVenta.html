@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImprimirVenta</title>
+    <style>
+        .contenedor {
+           width: 900px !important;
+           height:842px !important;
+           margin:auto;
+        }
+        body{
+           font-family:Arial, Helvetica, sans-serif
+        }
+        p.title{
+           font-weight:bold;
+        }
+         p.title2{
+           font-weight:bold;
+           color: #03A99F;
+           font-size:20px;
+        }
+        p.text{
+           font-size:15px;
+           font-weight:100;
+           color:#858585;
+        }
+        p{
+           margin:0px
+        }
+        .tbth{
+           text-align:left;
+        }
+
+        table.tbproductos{
+            border-collapse: separate;
+            border-spacing: 4px;
+        }
+
+        table.tbproductos thead tr th {
+           background-color: #03A99F;
+           padding:10px;
+           font-size:15px;
+           color:white;
+        }
+        table.tbproductos tbody tr td{
+           padding:10px;
+        }
+        .item{
+           font-size:15px;
+           font-weight:100;
+           color:#757575;
+        }
+        .item-2{
+        font-size:15px;
+           font-weight:bold;
+           color:#757575;
+        }
+
+        .item-3{
+           font-size:15px;
+           font-weight:bold;
+           background-color:#03A99F;
+           color:white;
+        }
+
+         .td-item {
+           border-bottom:2px solid #E8E8E8 !important;
+         }
+    </style>
+</head>
+<body >
+
+    <div class="contenedor">
+
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <img src="@Model.negocio.UrlLogo" style="width: 120px;height:120px"/>
+                </td>
+                <td style="text-align:right">
+                    <table style="margin-right:0;margin-left:auto">
+                        <tr><td><p class="title2">NÚMERO VENTA</p></td></tr>
+                        <tr><td>@Model.venta.NumeroVenta</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+         <table style="width:100%">
+            <tr>
+                <td>
+                    <table >
+                        <tr>
+                            <td>
+                                <p class="title">@Model.negocio.Nombre.ToUpper()</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p class="text">Direccion: @Model.negocio.Direccion</p></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="text">Correo: @Model.negocio.Correo</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="text-align:right">
+                    <table style="margin-right:0;margin-left:auto">
+                        <tr>
+                            <td><p class="title">CLIENTE</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="text">@Model.venta.NombreCliente</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="text">@Model.venta.DocumentoCliente</p></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br />
+
+        <table class="tbproductos" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="tbth">Producto</th>
+                    <th class="tbth" style="width:130px">Cantidad</th>
+                    <th class="tbth" style="width:130px">Precio</th>
+                    <th class="tbth" style="width:130px">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.venta.DetalleVenta)
+                    {
+                        <tr>
+                            <td class="td-item"><p class="item">@item.DescripcionProducto</p></td>
+                            <td class="td-item"><p class="item">@item.Cantidad</p></td>
+                            <td class="td-item"><p class="item">@Model.negocio.SimboloMoneda @item.Precio</p></td>
+                            <td style="background-color:#EDF6F9"><p class="item">@Model.negocio.SimboloMoneda @item.Total</p></td>
+                        </tr>
+
+                    }
+                }
+                <tr>
+                    <td colspan="2" rowspan="3">
+                    </td>
+                    <td  class="td-item">
+                        <p class="item-2">Sub Total</p>
+                    </td>
+                     <td class="item-3">
+                         <p>@Model.negocio.SimboloMoneda @Model.venta.SubTotal</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <p class="item-2" >IGV</p>
+                    </td>
+                     <td class="item-3">
+                         <p>@Model.negocio.SimboloMoneda @Model.venta.ImpuestoTotal</p>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="item-3">
+                        <p >Total</p>
+                    </td>
+                     <td class="item-3">
+                         <p>@Model.negocio.SimboloMoneda @Model.venta.Total</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
+
+</body>
+</html>
+
