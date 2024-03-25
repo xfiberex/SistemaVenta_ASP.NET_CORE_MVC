@@ -18,3 +18,22 @@ El sistema se puede utilizar para administrar una tienda de productos de un tipo
 - Inventario: Seguimiento de productos disponibles, cantidades, precios, etc.
 - Ventas: Proceso de venta de productos, registro de ventas realizadas.
 - Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
+
+## Tecnologías Utilizadas
+
+### Backend:
+
+- C#
+- ASP.NET Core MVC
+- SQL Server
+
+### Frontend:
+
+- HTML
+- JavaScript
+- CSS
+
+## Requisitos del Sistema
+- .NET Core SDK
+- Visual Studio o Visual Studio Code (para desarrollo)
+- SQL Server (para la base de datos)
