@@ -41,7 +41,7 @@ El sistema se puede utilizar para administrar una tienda de productos de un tipo
 
 ## Instalación
 
-1. Clona este repositorio: git clone https://github.com/tu_usuario/sistema-ventas-web.git
+1. Clona este repositorio: git clone https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC.git
 2. Abre el proyecto en Visual Studio o Visual Studio Code.
 3. Configura la cadena de conexión a la base de datos en appsettings.json.
 4. Ejecuta las migraciones de la base de datos para crear las tablas necesarias: dotnet ef database update.
