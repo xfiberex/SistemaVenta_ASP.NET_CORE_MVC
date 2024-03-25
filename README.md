@@ -47,7 +47,7 @@ El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso,
 
 ## Créditos
 
-Este proyecto fue desarrollado por Ricky Jimenez y en base al curso de Codigo Estudiante - Youtuber.
+Este proyecto fue desarrollado por Ricky Jimenez, en base al curso de Codigo Estudiante - Youtuber.
 
 ## Licencia
 
