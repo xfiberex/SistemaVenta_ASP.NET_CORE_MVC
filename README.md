@@ -4,7 +4,7 @@
 
 ![Desktop 25-3-2024 11-48-45 a  m -128](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/3c80a402-c83e-4ecc-99e2-9fba5c3c6254)
 
-## Descripción del proyecto
+## Descripción
 El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso, para aprender sobre ASP.NET Core MVC, utilizando plantillas HTML como recursos de diseño, para el frontend. 
 
 El sistema se puede utilizar para administrar una tienda de productos de un tipo o varios.
@@ -34,6 +34,15 @@ El sistema se puede utilizar para administrar una tienda de productos de un tipo
 - CSS
 
 ## Requisitos del Sistema
+
 - .NET Core SDK
 - Visual Studio o Visual Studio Code (para desarrollo)
 - SQL Server (para la base de datos)
+
+## Instalación
+
+1. Clona este repositorio: git clone https://github.com/tu_usuario/sistema-ventas-web.git
+2. Abre el proyecto en Visual Studio o Visual Studio Code.
+3. Configura la cadena de conexión a la base de datos en appsettings.json.
+4. Ejecuta las migraciones de la base de datos para crear las tablas necesarias: dotnet ef database update.
+5. Ejecuta la aplicación.
