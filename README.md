@@ -10,6 +10,7 @@ El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso,
 ## Caracteristicas
 
 - Inicio de Sesión: Los usuarios pueden iniciar sesión con sus credenciales para acceder al sistema.
+- Creación de usuarios con verificación de correo: El administrador agrega usuarios nuevos y maneja los credencialos por correo.
 - Dashboard: Interfaz principal que proporciona una visión general de las métricas clave del sistema.
 - Administración de Usuarios: Funcionalidad para gestionar usuarios, incluyendo crear, editar y eliminar usuarios.
 - Administración de Negocio: Herramientas para administrar aspectos del negocio, como clientes, proveedores, etc.
