@@ -33,7 +33,7 @@ El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso,
 
 ## Requisitos del Sistema
 
-- .NET Core SDK
+- .NET 8 Core SDK
 - Visual Studio o Visual Studio Code (para desarrollo)
 - SQL Server (para la base de datos)
 
