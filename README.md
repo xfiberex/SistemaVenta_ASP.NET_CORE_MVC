@@ -46,3 +46,11 @@ El sistema se puede utilizar para administrar una tienda de productos de un tipo
 3. Configura la cadena de conexión a la base de datos en appsettings.json.
 4. Ejecuta las migraciones de la base de datos para crear las tablas necesarias: dotnet ef database update.
 5. Ejecuta la aplicación.
+
+## Créditos
+
+Este proyecto fue desarrollado por Ricky Jimenez y Codigo Estudiante - Youtuber.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
