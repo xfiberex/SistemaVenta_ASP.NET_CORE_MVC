@@ -11,10 +11,10 @@ El sistema se puede utilizar para administrar una tienda de productos de un tipo
 
 ## Caracteristicas
 
-- **Inicio de Sesión: Los usuarios pueden iniciar sesión con sus credenciales para acceder al sistema.
-- **Dashboard: Interfaz principal que proporciona una visión general de las métricas clave del sistema.
-- **Administración de Usuarios: Funcionalidad para gestionar usuarios, incluyendo crear, editar y eliminar usuarios.
-- **Administración de Negocio: Herramientas para administrar aspectos del negocio, como clientes, proveedores, etc.
-- **Inventario: Seguimiento de productos disponibles, cantidades, precios, etc.
-- **Ventas: Proceso de venta de productos, registro de ventas realizadas.
-- **Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
+- Inicio de Sesión: Los usuarios pueden iniciar sesión con sus credenciales para acceder al sistema.
+- Dashboard: Interfaz principal que proporciona una visión general de las métricas clave del sistema.
+- Administración de Usuarios: Funcionalidad para gestionar usuarios, incluyendo crear, editar y eliminar usuarios.
+- Administración de Negocio: Herramientas para administrar aspectos del negocio, como clientes, proveedores, etc.
+- Inventario: Seguimiento de productos disponibles, cantidades, precios, etc.
+- Ventas: Proceso de venta de productos, registro de ventas realizadas.
+- Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
