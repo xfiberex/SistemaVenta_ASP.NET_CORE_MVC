@@ -48,7 +48,7 @@ namespace SistemaVenta.AplicacionWeb.Controllers
             }
             catch (Exception ex)
             {
-                gResponse.Estado = true;
+                gResponse.Estado = false;
                 gResponse.Mensaje = ex.Message;
             }
             return StatusCode(StatusCodes.Status200OK, gResponse);
@@ -68,7 +68,7 @@ namespace SistemaVenta.AplicacionWeb.Controllers
             }
             catch (Exception ex)
             {
-                gResponse.Estado = true;
+                gResponse.Estado = false;
                 gResponse.Mensaje = ex.Message;
             }
             return StatusCode(StatusCodes.Status200OK, gResponse);
@@ -85,7 +85,7 @@ namespace SistemaVenta.AplicacionWeb.Controllers
             }
             catch (Exception ex)
             {
-                gResponse.Estado = true;
+                gResponse.Estado = false;
                 gResponse.Mensaje = ex.Message;
             }
             return StatusCode(StatusCodes.Status200OK, gResponse);
