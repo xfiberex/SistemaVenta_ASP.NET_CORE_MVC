@@ -2,7 +2,7 @@
 
 ![Desktop 25-3-2024 8-42-23 p  m -895](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
-![Desktop 25-3-2024 8-43-50 p  m -459](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/41871a1d-ea9b-41de-b805-199629c14343)
+![Desktop 25-3-2024 8-43-50 p  m -459](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
 
 ## Descripción
 El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso, para aprender sobre ASP.NET Core MVC, utilizando plantillas HTML como recursos de diseño, para el frontend. El sistema se puede utilizar para administrar una tienda de productos de un tipo o varios.
