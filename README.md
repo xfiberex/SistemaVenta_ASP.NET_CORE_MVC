@@ -1,4 +1,4 @@
-## Sistema de Ventas WEB con plantillas HTML
+## Sistema de Ventas WEB
 
 ![Desktop 25-3-2024 8-42-23 p  m -895](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
