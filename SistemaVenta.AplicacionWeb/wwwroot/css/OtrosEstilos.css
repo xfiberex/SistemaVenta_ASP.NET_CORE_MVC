@@ -1,0 +1,32 @@
+﻿.bg-login-image-gaming {
+    background: url('https://firebasestorage.googleapis.com/v0/b/mitiendaweb-3f72a.appspot.com/o/IMAGEN_LOGIN%2F_94da4d70-7bf1-41a8-9fd0-a4ea9e26069e.jpeg?alt=media&token=e9065abe-c522-47bc-a8c0-4805aac99fa1');
+    /* Opcional: Especifica la posición, repetición y tamaño de la imagen de fondo */
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-register-image-gaming {
+    background: url('https://firebasestorage.googleapis.com/v0/b/mitiendaweb-3f72a.appspot.com/o/IMAGEN_LOGIN%2F_94da4d70-7bf1-41a8-9fd0-a4ea9e26069e.jpeg?alt=media&token=e9065abe-c522-47bc-a8c0-4805aac99fa1');
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-password-image-gaming {
+    background: url('https://firebasestorage.googleapis.com/v0/b/mitiendaweb-3f72a.appspot.com/o/IMAGEN_LOGIN%2F_94da4d70-7bf1-41a8-9fd0-a4ea9e26069e.jpeg?alt=media&token=e9065abe-c522-47bc-a8c0-4805aac99fa1');
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-gradient-info-black {
+    background-color: #212121;
+    background-size: cover;
+}
+
+.bg-navbar-gradient-black {
+    background-color: #212121;
+    background-size: cover;
+}
+
+.bg-header-black {
+    background-color: #292929 !important;
+}

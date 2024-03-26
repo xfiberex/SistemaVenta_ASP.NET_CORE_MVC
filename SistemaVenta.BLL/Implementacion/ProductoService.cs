@@ -67,7 +67,7 @@ namespace SistemaVenta.BLL.Implementacion
             try
             {
                 IQueryable<Producto> queryProducto = await _repositorio.Consultar(p => p.IdProducto == entidad.IdProducto);
-                
+
                 Producto producto_editar = queryProducto.First();
 
                 producto_editar.CodigoBarra = entidad.CodigoBarra;

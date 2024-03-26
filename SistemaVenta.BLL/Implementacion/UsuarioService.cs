@@ -295,9 +295,6 @@ namespace SistemaVenta.BLL.Implementacion
                         else
                         {
                             readerStream = new StreamReader(dataStream, Encoding.GetEncoding(response.CharacterSet));
-                            //htmlCorreo = readerStream.ReadToEnd();
-                            //response.Close();
-                            //readerStream.Close();
                         }
 
                         htmlCorreo = readerStream.ReadToEnd();

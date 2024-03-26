@@ -118,21 +118,3 @@ $(document).ready(function () {
 
         })
 })
-
-function formatearNumero(numero) {
-    // Convertir el número a cadena
-    let numeroStr = numero.toString();
-
-    // Separar la parte entera de la parte decimal
-    let [parteEntera, parteDecimal] = numeroStr.split(".");
-
-    // Agregar comas a la parte entera
-    parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    // Si hay una parte decimal, agregar un punto y la parte decimal
-    if (parteDecimal) {
-        return `${parteEntera}.${parteDecimal}`;
-    } else {
-        return parteEntera;
-    }
-}

@@ -2,12 +2,7 @@
 using SistemaVenta.BLL.Interfaces;
 using SistemaVenta.DAL.Interfaces;
 using SistemaVenta.Entity;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVenta.BLL.Implementacion
 {
@@ -28,7 +23,7 @@ namespace SistemaVenta.BLL.Implementacion
                 p => p.EsActivo == true &&
                 p.Stock > 0 &&
                 string.Concat(p.CodigoBarra, p.Marca, p.Descripcion).Contains(busqueda));
-            
+
             return query.Include(c => c.IdCategoriaNavigation).ToList();
         }
 

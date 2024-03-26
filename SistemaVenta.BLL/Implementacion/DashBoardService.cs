@@ -2,12 +2,7 @@
 using SistemaVenta.BLL.Interfaces;
 using SistemaVenta.DAL.Interfaces;
 using SistemaVenta.Entity;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVenta.BLL.Implementacion
 {
@@ -34,7 +29,7 @@ namespace SistemaVenta.BLL.Implementacion
 
         public async Task<int> TotalVentasUltimaSemana()
         {
-            try 
+            try
             {
                 IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Value.Date >= FechaInicio.Date);
                 int total = query.Count();
