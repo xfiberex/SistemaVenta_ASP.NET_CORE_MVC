@@ -44,11 +44,3 @@ El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso,
 3. Configura la cadena de conexión a la base de datos en appsettings.json.
 4. Ejecuta las migraciones de la base de datos para crear las tablas necesarias: dotnet ef database update.
 5. Ejecuta la aplicación.
-
-## Créditos
-
-Este proyecto fue desarrollado por xfiberex, en base al curso de Codigo Estudiante - Youtuber.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
