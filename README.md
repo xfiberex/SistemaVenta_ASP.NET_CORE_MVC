@@ -1,18 +1,10 @@
 # 🛒 Sistema de Ventas WEB - ASP.NET Core MVC## Sistema de Ventas WEB
 
+[Desktop 25-3-2024 8-42-23 p  m -895](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
+[Desktop 25-3-2024 8-43-50 p  m -459](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
 
-[![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)![Desktop 25-3-2024 8-42-23 p  m -895](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
-
-[![SQL Server](https://img.shields.io/badge/SQL%20Server-Database-CC2927?style=flat-square&logo=microsoft-sql-server)](https://www.microsoft.com/en-us/sql-server)
-
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE.txt)![Desktop 25-3-2024 8-43-50 p  m -459](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
-
-
-
-![Sistema de Ventas - Dashboard](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)## Descripción
-
-El proyecto es un sistema de ventas WEB, el cual desarrolle, en base a un curso, para aprender sobre ASP.NET Core MVC, utilizando plantillas HTML como recursos de diseño, para el frontend. El sistema se puede utilizar para administrar una tienda de productos de un tipo o varios.
+![Sistema de Ventas - Dashboard](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
 ![Sistema de Ventas - Gestión](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
 
