@@ -1,4 +1,4 @@
-# 🛒 Sistema de Ventas WEB - ASP.NET Core MVC## Sistema de Ventas WEB
+# 🛒 Sistema de Ventas WEB - ASP.NET Core MVC
 
 ![Sistema de Ventas - Dashboard](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
