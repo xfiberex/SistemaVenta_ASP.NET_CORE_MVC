@@ -1,9 +1,5 @@
 # 🛒 Sistema de Ventas WEB - ASP.NET Core MVC## Sistema de Ventas WEB
 
-[Desktop 25-3-2024 8-42-23 p  m -895](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
-
-[Desktop 25-3-2024 8-43-50 p  m -459](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
-
 ![Sistema de Ventas - Dashboard](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/8c23599c-33cb-4280-b058-30214a7af884)
 
 ![Sistema de Ventas - Gestión](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
