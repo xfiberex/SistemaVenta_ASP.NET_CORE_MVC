@@ -4,71 +4,47 @@
 
 ![Sistema de Ventas - Gestión](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
 
-## Características
-
 ## 📋 Descripción
 
-- Inicio de Sesión: Los usuarios pueden iniciar sesión con sus credenciales para acceder al sistema.
+Sistema integral de gestión de ventas desarrollado con **ASP.NET Core MVC** que permite administrar de manera eficiente un negocio de productos. El sistema implementa una arquitectura en capas con **Clean Architecture** y patrones como **Repository Pattern** e **Inversión de Dependencias**.
 
-Sistema integral de gestión de ventas desarrollado con **ASP.NET Core MVC** que permite administrar de manera eficiente un negocio de productos. El sistema implementa una arquitectura en capas con **Clean Architecture** y patrones como **Repository Pattern** e **Inversión de Dependencias**.- Dashboard: Interfaz principal que proporciona una visión general de las métricas clave del sistema.
+### 🎯 Propósito
 
-- Administración de Usuarios: Funcionalidad para gestionar usuarios por correo, incluyendo crear, editar y eliminar usuarios.
+Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NET Core MVC, implementando las mejores prácticas de desarrollo y utilizando plantillas modernas para el frontend.
 
-### 🎯 Propósito - Administración de Negocio: Herramientas para administrar aspectos del negocio, como la información del mismo.
-
-Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NET Core MVC, implementando las mejores prácticas de desarrollo y utilizando plantillas modernas para el frontend.- Inventario: Seguimiento de productos disponibles, cantidades, precios, etc.
-
-- Ventas: Proceso de venta de productos, registro de ventas realizadas.
-
-## ✨ Características Principales - Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
+## ✨ Características Principales
 
 ### 🔐 **Autenticación y Seguridad**
 
-- Sistema de login con autenticación por cookies.
+- Sistema de login con autenticación por cookies
+- Gestión de roles y permisos
+- Sesiones con tiempo de expiración configurable (20 minutos)
 
-- Gestión de roles y permisos.
+### 📊 **Dashboard Ejecutivo**
 
-- Sesiones con tiempo de expiración configurable (20 minutos).
-
-### 📊 **Dashboard Ejecutivo**- ASP.NET Core MVC
-
-- Métricas en tiempo real del negocio.
-
-- Indicadores de ventas y rendimiento.
-
-- Gráficos estadísticos interactivos.
+- Métricas en tiempo real del negocio
+- Indicadores de ventas y rendimiento
+- Gráficos estadísticos interactivos
 
 ### 👥 **Gestión de Usuarios**
 
-- CRUD completo de usuarios.
-
-- Asignación de roles y permisos.
-
-- Gestión de perfiles con fotos.
-
-- Activación/desactivación de cuentas.
+- CRUD completo de usuarios
+- Asignación de roles y permisos
+- Gestión de perfiles con fotos
+- Activación/desactivación de cuentas
 
 ### 🏢 **Administración de Negocio**
 
-- Configuración de información empresarial- Visual Studio o Visual Studio Code (para desarrollo).
-
-- Gestión de datos de contacto- SQL Server (para la base de datos).
-
-- Personalización de la marca.
-
-## Instalación
+- Configuración de información empresarial
+- Gestión de datos de contacto
+- Personalización de la marca
 
 ### 📦 **Gestión de Inventario**
 
-- Control de productos por categorías1. Clona este repositorio: git clone https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC.git
-
-- Seguimiento de stock en tiempo real2. Abre el proyecto en Visual Studio o Visual Studio Code.
-
-- Gestión de precios y descripciones3. Configura la cadena de conexión a la base de datos en appsettings.json.
-
-- Carga de imágenes de productos4. Ejecuta las migraciones de la base de datos para crear las tablas necesarias: dotnet ef database update.
-
-5. Ejecuta la aplicación.
+- Control de productos por categorías
+- Seguimiento de stock en tiempo real
+- Gestión de precios y descripciones
+- Carga de imágenes de productos
 
 ### 💰 **Sistema de Ventas**
 - Proceso de venta intuitivo y rápido.
