@@ -22,7 +22,7 @@ Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NE
 
 ## ✨ Características Principales - Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
 
-### 🔐 **Autenticación y Seguridad**## Tecnologías
+### 🔐 **Autenticación y Seguridad**
 
 - Sistema de login con autenticación por cookies.
 
@@ -38,7 +38,7 @@ Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NE
 
 - Gráficos estadísticos interactivos.
 
-### 👥 **Gestión de Usuarios**- HTML
+### 👥 **Gestión de Usuarios**
 
 - CRUD completo de usuarios.
 
@@ -48,7 +48,7 @@ Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NE
 
 - Activación/desactivación de cuentas.
 
-### 🏢 **Administración de Negocio**- .NET 8 Core SDK
+### 🏢 **Administración de Negocio**
 
 - Configuración de información empresarial- Visual Studio o Visual Studio Code (para desarrollo).
 
