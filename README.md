@@ -4,7 +4,7 @@
 
 ![Sistema de Ventas - Gestión](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/assets/135444565/b3232fa9-e409-488c-a0cf-ee900c399297)
 
-## Caracteristicas
+## Características
 
 ## 📋 Descripción
 
@@ -14,55 +14,47 @@ Sistema integral de gestión de ventas desarrollado con **ASP.NET Core MVC** que
 
 - Administración de Usuarios: Funcionalidad para gestionar usuarios por correo, incluyendo crear, editar y eliminar usuarios.
 
-### 🎯 Propósito- Administración de Negocio: Herramientas para administrar aspectos del negocio, como la información del mismo.
+### 🎯 Propósito - Administración de Negocio: Herramientas para administrar aspectos del negocio, como la información del mismo.
 
 Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NET Core MVC, implementando las mejores prácticas de desarrollo y utilizando plantillas modernas para el frontend.- Inventario: Seguimiento de productos disponibles, cantidades, precios, etc.
 
 - Ventas: Proceso de venta de productos, registro de ventas realizadas.
 
-## ✨ Características Principales- Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
-
-
+## ✨ Características Principales - Reportes: Generación de informes y análisis de datos relacionados con las ventas y el negocio.
 
 ### 🔐 **Autenticación y Seguridad**## Tecnologías
 
-- Sistema de login con autenticación por cookies
+- Sistema de login con autenticación por cookies.
 
-- Gestión de roles y permisos### Backend:
+- Gestión de roles y permisos.
 
-- Sesiones con tiempo de expiración configurable (20 minutos)
-
-- C#
+- Sesiones con tiempo de expiración configurable (20 minutos).
 
 ### 📊 **Dashboard Ejecutivo**- ASP.NET Core MVC
 
-- Métricas en tiempo real del negocio- SQL Server
+- Métricas en tiempo real del negocio.
 
-- Indicadores de ventas y rendimiento
+- Indicadores de ventas y rendimiento.
 
-- Gráficos estadísticos interactivos### Frontend:
-
-
+- Gráficos estadísticos interactivos.
 
 ### 👥 **Gestión de Usuarios**- HTML
 
-- CRUD completo de usuarios- JavaScript
+- CRUD completo de usuarios.
 
-- Asignación de roles y permisos- CSS
+- Asignación de roles y permisos.
 
-- Gestión de perfiles con fotos
+- Gestión de perfiles con fotos.
 
-- Activación/desactivación de cuentas## Requisitos del Sistema
-
-
+- Activación/desactivación de cuentas.
 
 ### 🏢 **Administración de Negocio**- .NET 8 Core SDK
 
-- Configuración de información empresarial- Visual Studio o Visual Studio Code (para desarrollo)
+- Configuración de información empresarial- Visual Studio o Visual Studio Code (para desarrollo).
 
-- Gestión de datos de contacto- SQL Server (para la base de datos)
+- Gestión de datos de contacto- SQL Server (para la base de datos).
 
-- Personalización de la marca
+- Personalización de la marca.
 
 ## Instalación
 
@@ -79,16 +71,16 @@ Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NE
 5. Ejecuta la aplicación.
 
 ### 💰 **Sistema de Ventas**
-- Proceso de venta intuitivo y rápido
-- Generación automática de facturas
-- Control de tipos de documento (Boleta, Factura)
-- Registro detallado de transacciones
+- Proceso de venta intuitivo y rápido.
+- Generación automática de facturas.
+- Control de tipos de documento (Boleta, Factura).
+- Registro detallado de transacciones.
 
 ### 📈 **Reportes y Análisis**
-- Generación de reportes en PDF
-- Análisis de ventas por período
-- Reportes de productos más vendidos
-- Exportación de datos
+- Generación de reportes en PDF.
+- Análisis de ventas por período.
+- Reportes de productos más vendidos.
+- Exportación de datos.
 
 ## 🏗️ Arquitectura del Proyecto
 
