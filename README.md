@@ -6,129 +6,88 @@
 
 ## 📋 Descripción
 
-Sistema integral de gestión de ventas desarrollado con **ASP.NET Core MVC** que permite administrar de manera eficiente un negocio de productos. El sistema implementa una arquitectura en capas con **Clean Architecture** y patrones como **Repository Pattern** e **Inversión de Dependencias**.
+Aplicación web para gestión de ventas, inventario y administración de negocio, desarrollada con **ASP.NET Core MVC (.NET 8)** y organizada en una arquitectura por capas:
 
-### 🎯 Propósito
+- **Presentación:** `SistemaVenta.AplicacionWeb`
+- **Lógica de negocio:** `SistemaVenta.BLL`
+- **Acceso a datos:** `SistemaVenta.DAL`
+- **Entidades:** `SistemaVenta.Entity`
+- **Inyección de dependencias:** `SistemaVenta.IOC`
 
-Este proyecto fue desarrollado como parte de un proceso de aprendizaje en ASP.NET Core MVC, implementando las mejores prácticas de desarrollo y utilizando plantillas modernas para el frontend.
+El proyecto usa autenticación por cookies, permisos por rol, generación de PDF para comprobantes, y carga de archivos (usuarios/productos/logo) mediante Firebase Storage.
 
-## ✨ Características Principales
+## ✨ Funcionalidades
 
-### 🔐 **Autenticación y Seguridad**
+- 🔐 **Autenticación y autorización** (login por cookies y vistas protegidas con `[Authorize]`)
+- 📊 **Dashboard** con indicadores de ventas
+- 👥 **Gestión de usuarios** (altas, edición, estado, foto)
+- 🏢 **Gestión del negocio** (datos generales e identidad visual)
+- 📦 **Inventario** (categorías, productos, stock, precio)
+- 💰 **Ventas** (nueva venta, historial, detalle)
+- 🧾 **Comprobantes PDF** de venta (DinkToPdf + plantilla Razor)
+- 📈 **Reporte de ventas por rango de fechas**
+- 📧 **Restablecimiento de clave por correo** (SMTP)
 
-- Sistema de login con autenticación por cookies
-- Gestión de roles y permisos
-- Sesiones con tiempo de expiración configurable (20 minutos)
+## 🏗️ Estructura de la solución
 
-### 📊 **Dashboard Ejecutivo**
-
-- Métricas en tiempo real del negocio
-- Indicadores de ventas y rendimiento
-- Gráficos estadísticos interactivos
-
-### 👥 **Gestión de Usuarios**
-
-- CRUD completo de usuarios
-- Asignación de roles y permisos
-- Gestión de perfiles con fotos
-- Activación/desactivación de cuentas
-
-### 🏢 **Administración de Negocio**
-
-- Configuración de información empresarial
-- Gestión de datos de contacto
-- Personalización de la marca
-
-### 📦 **Gestión de Inventario**
-
-- Control de productos por categorías
-- Seguimiento de stock en tiempo real
-- Gestión de precios y descripciones
-- Carga de imágenes de productos
-
-### 💰 **Sistema de Ventas**
-- Proceso de venta intuitivo y rápido.
-- Generación automática de facturas.
-- Control de tipos de documento (Boleta, Factura).
-- Registro detallado de transacciones.
-
-### 📈 **Reportes y Análisis**
-- Generación de reportes en PDF.
-- Análisis de ventas por período.
-- Reportes de productos más vendidos.
-- Exportación de datos.
-
-## 🏗️ Arquitectura del Proyecto
-
-El proyecto sigue una **arquitectura en capas** bien definida:
-
-```
-📁 SistemaVenta.AplicacionWeb/     # Capa de Presentación (MVC)
-├── Controllers/                  # Controladores MVC
-├── Views/                       # Vistas Razor
-├── Models/ViewModels/           # ViewModels
-├── Utilidades/                  # Utilities y Helpers
-└── wwwroot/                     # Recursos estáticos
-
-📁 SistemaVenta.BLL/             # Capa de Lógica de Negocio
-├── Interfaces/                  # Contratos de servicio
-└── Implementacion/              # Implementación de servicios
-
-📁 SistemaVenta.DAL/             # Capa de Acceso a Datos
-├── DBContext/                   # Contexto de Entity Framework
-├── Interfaces/                  # Contratos del repositorio
-└── Implementacion/              # Implementación del repositorio
-
-📁 SistemaVenta.Entity/          # Capa de Entidades
-└── *.cs                        # Modelos de dominio
-
-📁 SistemaVenta.IOC/             # Inversión de Control
-└── Dependencia.cs               # Configuración de dependencias
+```text
+SolucionSistemaVenta.sln
+│
+├─ SistemaVenta.AplicacionWeb/   -> MVC (Controllers, Views, ViewModels, wwwroot)
+├─ SistemaVenta.BLL/             -> Servicios de negocio
+├─ SistemaVenta.DAL/             -> Repositorios + DBContext
+├─ SistemaVenta.Entity/          -> Entidades de dominio
+├─ SistemaVenta.IOC/             -> Registro de dependencias
+└─ Recursos BD y Plantillas/     -> Scripts SQL y plantillas de apoyo
 ```
 
-## 🛠️ Tecnologías y Herramientas
+## 🛠️ Stack tecnológico
 
-### **Backend**
-- ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white) **C# 12.0**
-- ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet) **ASP.NET Core MVC 8.0**
-- ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-512BD4?style=flat-square) **Entity Framework Core**
-- ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoft-sql-server) **SQL Server**
+### Backend
+- **.NET 8 / ASP.NET Core MVC**
+- **Entity Framework Core** (DB First con `DBVENTAContext`)
+- **SQL Server**
+- **AutoMapper**
+- **DinkToPdf**
+- **FirebaseAuthentication.net / FirebaseStorage.net**
 
-### **Frontend**
-- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) **HTML5**
-- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) **CSS3/SCSS**
-- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) **JavaScript ES6+**
-- ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white) **Bootstrap 5**
+### Frontend
+- **Razor Views**
+- **Bootstrap** (plantilla SB Admin 2)
+- **jQuery**
+- **DataTables**
+- **Chart.js**
+- **Select2**
+- **Toastr / SweetAlert**
 
-### **Librerías y Paquetes**
-- **AutoMapper** - Mapeo de objetos
-- **DinkToPdf** - Generación de PDFs
-- **Cookie Authentication** - Autenticación
-- **FireBase** - Almacenamiento de archivos
+## 📋 Requisitos
 
-## 📋 Requisitos del Sistema
+- **.NET SDK 8.0+**
+- **SQL Server** (Express/Developer/Standard)
+- **Visual Studio 2022** o **VS Code**
 
-### **Para Desarrollo:**
-- ![.NET](https://img.shields.io/badge/.NET-8.0%20SDK-512BD4?style=flat-square) **.NET 8.0 SDK** o superior
-- ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=flat-square&logo=visual-studio) **Visual Studio 2022** o **VS Code**
-- ![SQL Server](https://img.shields.io/badge/SQL%20Server-2019+-CC2927?style=flat-square) **SQL Server 2019+** o **SQL Server Express**
+## 🚀 Puesta en marcha
 
-### **Para Producción:**
-- **Windows Server** o **Linux** con soporte para .NET 8
-- **IIS** o **Kestrel** como servidor web
-- **SQL Server** para base de datos
+### 1) Clonar repositorio
 
-## 🚀 Instalación y Configuración
-
-### **1. Clonar el Repositorio**
 ```bash
 git clone https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC.git
 cd SistemaVenta_ASP.NET_CORE_MVC
 ```
 
-### **2. Configurar Base de Datos**
-1. Abrir `appsettings.json` en `SistemaVenta.AplicacionWeb/`
-2. Modificar la cadena de conexión:
+### 2) Crear base de datos y estructura
+
+Ejecuta, en este orden, los scripts:
+
+1. `Recursos BD y Plantillas/Consultas/001_BaseDatos_Tablas.sql`
+2. `Recursos BD y Plantillas/Consultas/002_Inserts.sql`
+
+> Nota: Este repositorio ya incluye scripts SQL completos para estructura y datos iniciales.
+
+### 3) Configurar conexión a SQL Server
+
+Edita `SistemaVenta.AplicacionWeb/appsettings.json`:
+
 ```json
 {
   "ConnectionStrings": {
@@ -137,71 +96,72 @@ cd SistemaVenta_ASP.NET_CORE_MVC
 }
 ```
 
-### **3. Restaurar Paquetes**
+### 4) Configurar servicios externos (opcional pero recomendado)
+
+La app toma credenciales desde la tabla `Configuracion`:
+
+- Recurso `FireBase_Storage`: email, clave, ruta, api_key, carpetas
+- Recurso `Servicio_Correo`: correo, clave, alias, host, puerto
+
+El script `002_Inserts.sql` crea estas claves, pero debes completar sus valores.
+
+### 5) Restaurar y ejecutar
+
 ```bash
 dotnet restore
-```
-
-### **4. Crear Base de Datos**
-- Ejecutar el script SQL ubicado en `Recursos BD y Plantillas/`
-- O usar Entity Framework Migrations:
-```bash
-dotnet ef database update
-```
-
-### **5. Ejecutar la Aplicación**
-```bash
 dotnet run --project SistemaVenta.AplicacionWeb
 ```
 
-### **6. Acceso al Sistema**
-- **URL:** `https://localhost:5001` o `http://localhost:5000`
-- **Usuario por defecto:** Configurar en la base de datos inicial
+En desarrollo, la URL por defecto suele iniciar en:
 
-## 📱 Uso del Sistema
+- `http://localhost:5152`
 
-### **Panel Principal**
-1. Iniciar sesión con credenciales válidas
-2. Acceder al dashboard principal
-3. Navegar por los diferentes módulos
+La ruta inicial configurada es:
 
-### **Gestión de Productos**
-1. Ir a **Productos** → **Nuevo Producto**
-2. Completar información y subir imagen
-3. Asignar categoría y configurar stock
+- `Acceso/Login`
 
-### **Realizar Venta**
-1. Acceder a **Ventas** → **Nueva Venta**
-2. Buscar y agregar productos
-3. Completar datos del cliente
-4. Generar factura o boleta
+## 🔐 Seguridad y acceso
+
+- Autenticación con **Cookie Authentication**
+- Expiración de sesión configurada en **20 minutos**
+- Menú dinámico por rol (`Rol`, `Menu`, `RolMenu`)
+
+## 🧾 Base de datos (resumen)
+
+Tablas principales:
+
+- `Usuario`, `Rol`, `Menu`, `RolMenu`
+- `Categoria`, `Producto`
+- `Venta`, `DetalleVenta`, `TipoDocumentoVenta`, `NumeroCorrelativo`
+- `Negocio`, `Configuracion`
 
 ## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas. Para contribuir:
+Las contribuciones son bienvenidas:
 
-1. Fork el proyecto
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
+1. Haz un fork del proyecto
+2. Crea una rama: `git checkout -b feature/mi-feature`
+3. Realiza tus cambios y commits
+4. Publica tu rama y abre un Pull Request
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE.txt](LICENSE.txt) para más detalles.
+Este proyecto está bajo licencia MIT. Revisa [LICENSE.txt](LICENSE.txt).
 
 ## 👨‍💻 Autor
 
 **xfiberex**
+
 - GitHub: [@xfiberex](https://github.com/xfiberex)
 
 ## 📞 Soporte
 
-Si tienes alguna pregunta o problema:
-1. Revisar la documentación
-2. Buscar en los [Issues](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/issues)
-3. Crear un nuevo Issue si es necesario
+Si encuentras un problema o tienes dudas:
+
+1. Revisa la documentación del repositorio
+2. Busca en los [Issues](https://github.com/xfiberex/SistemaVenta_ASP.NET_CORE_MVC/issues)
+3. Abre un nuevo Issue con el detalle
 
 ---
 
-⭐ **¡No olvides darle una estrella al proyecto si te resultó útil!**
+⭐ Si este proyecto te fue útil, considera darle una estrella.
