@@ -1,6 +1,6 @@
 # 🛒 Sistema de Ventas WEB — ASP.NET Core MVC
 
-> Aplicación web full-stack para gestión de ventas, inventario y administración de negocio, construida con **.NET 10** y arquitectura en capas.
+> Aplicación Web Full-Stack para gestión de ventas, inventario y administración de negocio, migrado a **.NET 10** y con arquitectura en capas.
 
 ---
 
