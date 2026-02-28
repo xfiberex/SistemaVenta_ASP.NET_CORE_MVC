@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     $(".card-body").LoadingOverlay("show")
 
-    fetch("/Negocio/Obtener")
+    secureFetch("/Negocio/Obtener")
         .then(response => {
             $(".card-body").LoadingOverlay("hide")
             return response.ok ? response.json() : Promise.reject(response)
@@ -58,7 +58,7 @@ $("#btnGuardarCambios").click(function () {
 
     $(".card-body").LoadingOverlay("show")
 
-    fetch("/Negocio/GuardarCambios", {
+    secureFetch("/Negocio/GuardarCambios", {
         method: "POST",
         body: formData
     })

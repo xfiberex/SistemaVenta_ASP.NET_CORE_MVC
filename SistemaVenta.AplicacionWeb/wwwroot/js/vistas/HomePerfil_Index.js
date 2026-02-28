@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     $(".container-fluid").LoadingOverlay("show")
 
-    fetch("/Home/ObtenerUsuario")
+    secureFetch("/Home/ObtenerUsuario")
         .then(response => {
             $(".container-fluid").LoadingOverlay("hide")
             return response.ok ? response.json() : Promise.reject(response)
@@ -60,7 +60,7 @@ $("#btnGuardarCambios").click(function () {
                     telefono: $("#txTelefono").val().trim()
                 }
 
-                fetch("/Home/GuardarPerfil", {
+                secureFetch("/Home/GuardarPerfil", {
                     method: "POST",
                     headers: { "Content-Type": "application/json; charset=utf-8" },
                     body: JSON.stringify(modelo)
@@ -106,7 +106,7 @@ $("#btnCambiarClave").click(function () {
         claveNueva: $("#txtClaveNueva").val().trim()
     }
 
-    fetch("/Home/CambiarClave", {
+    secureFetch("/Home/CambiarClave", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=utf-8" },
         body: JSON.stringify(modelo)

@@ -10,13 +10,27 @@
 
 let tablaData;
 
+function sanitizeImageUrl(url) {
+    if (typeof url !== "string") {
+        return "";
+    }
+
+    try {
+        const parsedUrl = new URL(url, window.location.origin);
+        return ["http:", "https:"].includes(parsedUrl.protocol) ? parsedUrl.href : "";
+    }
+    catch {
+        return "";
+    }
+}
+
 $(document).ready(function () {
 
     // Esto le agregar una animación de carga
     $(".card-body").LoadingOverlay("show")
 
     // Hacer solicitud a la URL para obtener los datos
-    fetch("/Usuario/ListaRoles")
+    secureFetch("/Usuario/ListaRoles")
         .then(response => {
             $(".card-body").LoadingOverlay("hide")
             return response.ok ? response.json() : Promise.reject(response)
@@ -51,7 +65,12 @@ $(document).ready(function () {
             { "data": "idUsuario", "visible": false, "searchable": false },
             {
                 "data": "urlFoto", render: function (data) {
-                    return `<img style="height:60px" src=${data} class="rounded mx-auto d-block"/>`
+                    const imagen = $("<img>")
+                        .addClass("rounded mx-auto d-block")
+                        .css("height", "60px")
+                        .attr("src", sanitizeImageUrl(data));
+
+                    return imagen.prop("outerHTML");
                 }
             },
             { "data": "nombre" },
@@ -136,7 +155,7 @@ $("#btnGuardar").click(function () {
     $("#modalData").find("div.modal-content").LoadingOverlay("show")
 
     if (modelo.idUsuario == 0) {
-        fetch("/Usuario/Crear", {
+        secureFetch("/Usuario/Crear", {
             method: "POST",
             body: formData
         })
@@ -156,7 +175,7 @@ $("#btnGuardar").click(function () {
             })
     }
     else {
-        fetch("/Usuario/Editar", {
+        secureFetch("/Usuario/Editar", {
             method: "PUT",
             body: formData
         })
@@ -220,7 +239,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function () {
             if (respuesta) {
                 $(".showSweetAlert").LoadingOverlay("show")
 
-                fetch(`/Usuario/Eliminar?IdUsuario=${data.idUsuario}`, {
+                secureFetch(`/Usuario/Eliminar?IdUsuario=${data.idUsuario}`, {
                     method: "DELETE",
                 })
                 .then(response => {

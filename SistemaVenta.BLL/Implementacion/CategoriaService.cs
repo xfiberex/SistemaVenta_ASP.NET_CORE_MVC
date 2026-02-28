@@ -41,7 +41,13 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Categoria categoria_encontrada = await _repositorio.Obtener(c => c.IdCategoria == entidad.IdCategoria);
+                Categoria? categoria_encontrada = await _repositorio.Obtener(c => c.IdCategoria == entidad.IdCategoria);
+
+                if (categoria_encontrada == null)
+                {
+                    throw new TaskCanceledException("La categoria no existe");
+                }
+
                 categoria_encontrada.Descripcion = entidad.Descripcion;
                 categoria_encontrada.EsActivo = entidad.EsActivo;
                 bool respuesta = await _repositorio.Editar(categoria_encontrada);
@@ -62,12 +68,7 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Categoria categoria_encontrada = await _repositorio.Obtener(c => c.IdCategoria == idCategoria);
-
-                if (categoria_encontrada == null)
-                {
-                    throw new TaskCanceledException("La categoria no existe");
-                }
+                Categoria? categoria_encontrada = await _repositorio.Obtener(c => c.IdCategoria == idCategoria) ?? throw new TaskCanceledException("La categoria no existe");
                 bool respuesta = await _repositorio.Eliminar(categoria_encontrada);
                 return respuesta;
             }

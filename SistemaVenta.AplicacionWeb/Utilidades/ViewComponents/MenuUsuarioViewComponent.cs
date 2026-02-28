@@ -12,13 +12,14 @@ namespace SistemaVenta.AplicacionWeb.Utilidades.ViewComponents
             string nombreUsuario = "";
             string urlFotoUsuario = "";
 
-            if (claimUser.Identity.IsAuthenticated)
+            if (claimUser.Identity?.IsAuthenticated == true)
             {
                 nombreUsuario = claimUser.Claims
                     .Where(c => c.Type == ClaimTypes.Name)
-                    .Select(c => c.Value).SingleOrDefault();
+                    .Select(c => c.Value).SingleOrDefault() ?? string.Empty;
 
-                urlFotoUsuario = ((ClaimsIdentity)claimUser.Identity).FindFirst("UrlFoto").Value;
+                ClaimsIdentity? identity = claimUser.Identity as ClaimsIdentity;
+                urlFotoUsuario = identity?.FindFirst("UrlFoto")?.Value ?? string.Empty;
             }
 
             ViewData["nombreUsuario"] = nombreUsuario;

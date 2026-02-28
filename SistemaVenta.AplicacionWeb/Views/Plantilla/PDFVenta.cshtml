@@ -1,6 +1,9 @@
 ﻿@model SistemaVenta.AplicacionWeb.Models.ViewModels.VMPDFVenta;
 @{
     Layout = null;
+    var negocio = Model.negocio ?? new SistemaVenta.AplicacionWeb.Models.ViewModels.VMNegocio();
+    var venta = Model.venta ?? new SistemaVenta.AplicacionWeb.Models.ViewModels.VMVenta();
+    var simboloMoneda = negocio.SimboloMoneda ?? string.Empty;
 }
 
 <!DOCTYPE html>
@@ -91,12 +94,12 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <img src="@Model.negocio.UrlLogo" style="width: 120px;height:120px" />
+                    <img src="@(negocio.UrlLogo ?? string.Empty)" style="width: 120px;height:120px" />
                 </td>
                 <td style="text-align:right">
                     <table style="margin-right:0;margin-left:auto">
                         <tr><td><p class="title2">NÚMERO VENTA</p></td></tr>
-                        <tr><td>@Model.venta.NumeroVenta</td></tr>
+                        <tr><td>@(venta.NumeroVenta ?? string.Empty)</td></tr>
                     </table>
                 </td>
             </tr>
@@ -108,15 +111,15 @@
                     <table>
                         <tr>
                             <td>
-                                <p class="title">@Model.negocio.Nombre.ToUpper()</p>
+                                <p class="title">@((negocio.Nombre ?? string.Empty).ToUpperInvariant())</p>
                             </td>
                         </tr>
                         <tr>
-                            <td><p class="text">Direccion: @Model.negocio.Direccion</p></td>
+                            <td><p class="text">Direccion: @(negocio.Direccion ?? string.Empty)</p></td>
                         </tr>
                         <tr>
                             <td>
-                                <p class="text">Correo: @Model.negocio.Correo</p>
+                                <p class="text">Correo: @(negocio.Correo ?? string.Empty)</p>
                             </td>
                         </tr>
                     </table>
@@ -127,10 +130,10 @@
                             <td><p class="title">CLIENTE</p></td>
                         </tr>
                         <tr>
-                            <td><p class="text">@Model.venta.NombreCliente</p></td>
+                            <td><p class="text">@(venta.NombreCliente ?? string.Empty)</p></td>
                         </tr>
                         <tr>
-                            <td><p class="text">@Model.venta.DocumentoCliente</p></td>
+                            <td><p class="text">@(venta.DocumentoCliente ?? string.Empty)</p></td>
                         </tr>
                     </table>
                 </td>
@@ -150,13 +153,13 @@
             </thead>
             <tbody>
                 @{
-                    foreach (var item in Model.venta.DetalleVenta)
+                    foreach (var item in venta.DetalleVenta)
                     {
                         <tr>
                             <td class="td-item"><p class="item">@item.DescripcionProducto</p></td>
                             <td class="td-item"><p class="item">@item.Cantidad</p></td>
-                            <td class="td-item"><p class="item">@Model.negocio.SimboloMoneda @item.Precio</p></td>
-                            <td style="background-color:#EDF6F9"><p class="item">@Model.negocio.SimboloMoneda @item.Total</p></td>
+                            <td class="td-item"><p class="item">@simboloMoneda @item.Precio</p></td>
+                            <td style="background-color:#EDF6F9"><p class="item">@simboloMoneda @item.Total</p></td>
                         </tr>
 
                     }
@@ -168,7 +171,7 @@
                         <p class="item-2">Sub Total</p>
                     </td>
                     <td class="item-3">
-                        <p>@Model.negocio.SimboloMoneda @Model.venta.SubTotal</p>
+                        <p>@simboloMoneda @(venta.SubTotal ?? string.Empty)</p>
                     </td>
                 </tr>
                 <tr>
@@ -176,7 +179,7 @@
                         <p class="item-2">ITBIS</p>
                     </td>
                     <td class="item-3">
-                        <p>@Model.negocio.SimboloMoneda @Model.venta.ImpuestoTotal</p>
+                        <p>@simboloMoneda @(venta.ImpuestoTotal ?? string.Empty)</p>
                     </td>
                 </tr>
                 <tr>
@@ -184,7 +187,7 @@
                         <p>Total</p>
                     </td>
                     <td class="item-3">
-                        <p>@Model.negocio.SimboloMoneda @Model.venta.Total</p>
+                        <p>@simboloMoneda @(venta.Total ?? string.Empty)</p>
                     </td>
                 </tr>
             </tbody>

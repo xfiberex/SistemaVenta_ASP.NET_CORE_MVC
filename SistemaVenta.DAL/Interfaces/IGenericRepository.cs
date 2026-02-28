@@ -7,7 +7,7 @@ namespace SistemaVenta.DAL.Interfaces
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         // Obtener va a hacer una funcion de TEntity e igual para las otras tareas
-        Task<TEntity> Obtener(Expression<Func<TEntity, bool>> filtro);
+        Task<TEntity?> Obtener(Expression<Func<TEntity, bool>> filtro);
 
         Task<TEntity> Crear(TEntity entidad);
 
@@ -19,6 +19,6 @@ namespace SistemaVenta.DAL.Interfaces
 
         // Esto Proporciona funcionalidad para evaluar consultas en un origen de datos específico -
         // en el que no se especifica el tipo de datos.
-        Task<IQueryable<TEntity>> Consultar(Expression<Func<TEntity, bool>> filtro = null);
+        Task<IQueryable<TEntity>> Consultar(Expression<Func<TEntity, bool>>? filtro = null);
     }
 }

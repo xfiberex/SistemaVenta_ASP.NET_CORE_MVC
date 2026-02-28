@@ -2,6 +2,8 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using SistemaVenta.AplicacionWeb.Models.ViewModels;
 using SistemaVenta.AplicacionWeb.Utilidades.Response;
@@ -19,16 +21,21 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         private readonly IVentaService _ventaService;
         private readonly IMapper _mapper;
         private readonly IConverter _converter;
+        private readonly ITimeLimitedDataProtector _pdfTokenProtector;
 
         public VentaController(ITipoDocumentoVentaService TipoDocumentoVentaService,
                                IVentaService ventaService,
                                IMapper mapper,
-                               IConverter converter)
+                               IConverter converter,
+                               IDataProtectionProvider dataProtectionProvider)
         {
             _TipoDocumentoVentaService = TipoDocumentoVentaService;
             _ventaService = ventaService;
             _mapper = mapper;
             _converter = converter;
+            _pdfTokenProtector = dataProtectionProvider
+                .CreateProtector("SistemaVenta.PDFVenta.Token")
+                .ToTimeLimitedDataProtector();
         }
 
         public IActionResult HistorialVenta()
@@ -39,6 +46,18 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         public IActionResult NuevaVenta()
         {
             return View();
+        }
+
+        private bool TryGetUserId(out int userId)
+        {
+            userId = 0;
+
+            string? idUsuario = HttpContext.User.Claims
+                .Where(c => c.Type == ClaimTypes.NameIdentifier)
+                .Select(c => c.Value)
+                .SingleOrDefault();
+
+            return int.TryParse(idUsuario, out userId);
         }
 
         [HttpGet]
@@ -62,13 +81,14 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                ClaimsPrincipal claimUser = HttpContext.User;
+                if (!TryGetUserId(out int idUsuario))
+                {
+                    gResponse.Estado = false;
+                    gResponse.Mensaje = "Sesión inválida.";
+                    return StatusCode(StatusCodes.Status401Unauthorized, gResponse);
+                }
 
-                string idUsuario = claimUser.Claims
-                    .Where(c => c.Type == ClaimTypes.NameIdentifier)
-                    .Select(c => c.Value).SingleOrDefault();
-
-                modelo.IdUsuario = int.Parse(idUsuario);
+                modelo.IdUsuario = idUsuario;
 
                 Venta venta_creada = await _ventaService.Registrar(_mapper.Map<Venta>(modelo));
                 modelo = _mapper.Map<VMVenta>(venta_creada);
@@ -96,7 +116,8 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         // Para la devolucion del PDF generado
         public IActionResult MostrarPDFVenta(string numeroVenta)
         {
-            string urlPlantillaVista = $"{this.Request.Scheme}://{this.Request.Host}/Plantilla/PDFVenta?numeroVenta={numeroVenta}";
+            string token = _pdfTokenProtector.Protect(numeroVenta, TimeSpan.FromMinutes(5));
+            string urlPlantillaVista = $"{this.Request.Scheme}://{this.Request.Host}/Plantilla/PDFVenta?numeroVenta={numeroVenta}&token={Uri.EscapeDataString(token)}";
 
             var pdf = new HtmlToPdfDocument()
             {

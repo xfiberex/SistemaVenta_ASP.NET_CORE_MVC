@@ -21,7 +21,7 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         {
             ClaimsPrincipal claimUser = HttpContext.User;
 
-            if (claimUser.Identity.IsAuthenticated)
+            if (claimUser.Identity?.IsAuthenticated == true)
             {
                 return RedirectToAction("Index", "DashBoard");
             }
@@ -38,7 +38,13 @@ namespace SistemaVenta.AplicacionWeb.Controllers
         {
             try
             {
-                Usuario usuario_encontrado = await _usuarioService.ObtenerPorCredenciales(modelo.Correo, modelo.Clave);
+                if (string.IsNullOrWhiteSpace(modelo.Correo) || string.IsNullOrWhiteSpace(modelo.Clave))
+                {
+                    ViewData["Mensaje"] = "Por favor, asegúrese de haber ingresado su correo y contraseña.";
+                    return View();
+                }
+
+                Usuario? usuario_encontrado = await _usuarioService.ObtenerPorCredenciales(modelo.Correo, modelo.Clave);
 
                 if (usuario_encontrado == null)
                 {
@@ -53,7 +59,7 @@ namespace SistemaVenta.AplicacionWeb.Controllers
                 new Claim(ClaimTypes.Name, usuario_encontrado.Nombre),
                 new Claim(ClaimTypes.NameIdentifier, usuario_encontrado.IdUsuario.ToString()),
                 new Claim(ClaimTypes.Role, usuario_encontrado.IdRol.ToString()),
-                new Claim("UrlFoto", usuario_encontrado.UrlFoto),
+                new Claim("UrlFoto", usuario_encontrado.UrlFoto ?? string.Empty),
                 };
 
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -102,9 +108,9 @@ namespace SistemaVenta.AplicacionWeb.Controllers
                     ViewData["Mensaje"] = null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ViewData["MensajeError"] = "Tenemos problemas. Por favor inténtelo de nuevo más tarde: " + ex.Message;
+                ViewData["MensajeError"] = "Tenemos problemas. Por favor inténtelo de nuevo más tarde.";
                 ViewData["Mensaje"] = null;
             }
             return View();

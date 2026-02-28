@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SistemaVenta.AplicacionWeb.Models.ViewModels;
+using SistemaVenta.AplicacionWeb.Utilidades.Extensiones;
 using SistemaVenta.AplicacionWeb.Utilidades.Response;
 using SistemaVenta.BLL.Interfaces;
 using SistemaVenta.Entity;
@@ -55,13 +56,22 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                VMNegocio vmNegocio = JsonConvert.DeserializeObject<VMNegocio>(modelo);
+                VMNegocio? vmNegocio = JsonConvert.DeserializeObject<VMNegocio>(modelo);
+                if (vmNegocio == null)
+                {
+                    throw new TaskCanceledException("No se pudo interpretar el modelo enviado.");
+                }
 
                 string nombreLogo = "";
-                Stream logoStream = null;
+                Stream? logoStream = null;
 
                 if (logo != null)
                 {
+                    if (!ArchivoValidacion.EsImagenValida(logo, out string mensajeValidacion))
+                    {
+                        throw new TaskCanceledException(mensajeValidacion);
+                    }
+
                     string nombre_en_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(logo.FileName);
                     nombreLogo = string.Concat(nombre_en_codigo, extension);

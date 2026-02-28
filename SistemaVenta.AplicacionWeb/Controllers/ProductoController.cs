@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SistemaVenta.AplicacionWeb.Models.ViewModels;
+using SistemaVenta.AplicacionWeb.Utilidades.Extensiones;
 using SistemaVenta.AplicacionWeb.Utilidades.Response;
 using SistemaVenta.BLL.Interfaces;
 using SistemaVenta.Entity;
@@ -44,13 +45,22 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                VMProducto vmProducto = JsonConvert.DeserializeObject<VMProducto>(modelo);
+                VMProducto? vmProducto = JsonConvert.DeserializeObject<VMProducto>(modelo);
+                if (vmProducto == null)
+                {
+                    throw new TaskCanceledException("No se pudo interpretar el modelo enviado.");
+                }
 
                 string nombreImagen = "";
-                Stream imagenStream = null;
+                Stream? imagenStream = null;
 
                 if (imagen != null)
                 {
+                    if (!ArchivoValidacion.EsImagenValida(imagen, out string mensajeValidacion))
+                    {
+                        throw new TaskCanceledException(mensajeValidacion);
+                    }
+
                     string nombre_en_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(imagen.FileName);
                     nombreImagen = string.Concat(nombre_en_codigo, extension);
@@ -80,13 +90,22 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                VMProducto vmProducto = JsonConvert.DeserializeObject<VMProducto>(modelo);
+                VMProducto? vmProducto = JsonConvert.DeserializeObject<VMProducto>(modelo);
+                if (vmProducto == null)
+                {
+                    throw new TaskCanceledException("No se pudo interpretar el modelo enviado.");
+                }
 
                 string nombreImagen = "";
-                Stream imagenStream = null;
+                Stream? imagenStream = null;
 
                 if (imagen != null)
                 {
+                    if (!ArchivoValidacion.EsImagenValida(imagen, out string mensajeValidacion))
+                    {
+                        throw new TaskCanceledException(mensajeValidacion);
+                    }
+
                     string nombre_en_codigo = Guid.NewGuid().ToString("N");
                     string extension = Path.GetExtension(imagen.FileName);
                     nombreImagen = string.Concat(nombre_en_codigo, extension);

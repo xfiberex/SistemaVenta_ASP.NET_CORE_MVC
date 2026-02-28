@@ -91,7 +91,7 @@ $("#btnGuardar").click(function () {
     $("#modalData").find("div.modal-content").LoadingOverlay("show")
 
     if (modelo.idCategoria == 0) {
-        fetch("/Categoria/Crear", {
+        secureFetch("/Categoria/Crear", {
             method: "POST",
             headers: { "Content-Type": "application/json; charset=utf-8" },
             body: JSON.stringify(modelo)
@@ -112,7 +112,7 @@ $("#btnGuardar").click(function () {
             })
     }
     else {
-        fetch("/Categoria/Editar", {
+        secureFetch("/Categoria/Editar", {
             method: "PUT",
             headers: { "Content-Type": "application/json; charset=utf-8" },
             body: JSON.stringify(modelo)
@@ -175,7 +175,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function () {
             if (respuesta) {
                 $(".showSweetAlert").LoadingOverlay("show")
 
-                fetch(`/Categoria/Eliminar?IdCategoria=${data.idCategoria}`, {
+                secureFetch(`/Categoria/Eliminar?IdCategoria=${data.idCategoria}`, {
                     method: "DELETE",
                 })
                     .then(response => {

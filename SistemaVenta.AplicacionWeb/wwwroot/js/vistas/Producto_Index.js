@@ -11,9 +11,24 @@
 }
 
 let tablaData;
+
+function sanitizeImageUrl(url) {
+    if (typeof url !== "string") {
+        return "";
+    }
+
+    try {
+        const parsedUrl = new URL(url, window.location.origin);
+        return ["http:", "https:"].includes(parsedUrl.protocol) ? parsedUrl.href : "";
+    }
+    catch {
+        return "";
+    }
+}
+
 $(document).ready(function () {
 
-    fetch("/Categoria/Lista")
+    secureFetch("/Categoria/Lista")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response)
         })
@@ -44,7 +59,12 @@ $(document).ready(function () {
             { "data": "idProducto", "visible": false, "searchable": false },
             {
                 "data": "urlImagen", render: function (data) {
-                    return `<img style="height:60px" src=${data} class="rounded mx-auto d-block"/>`
+                    const imagen = $("<img>")
+                        .addClass("rounded mx-auto d-block")
+                        .css("height", "60px")
+                        .attr("src", sanitizeImageUrl(data));
+
+                    return imagen.prop("outerHTML");
                 }
             },
             { "data": "codigoBarra" },
@@ -139,7 +159,7 @@ $("#btnGuardar").click(function () {
 
     if (modelo.idProducto == 0) {
 
-        fetch("/Producto/Crear", {
+        secureFetch("/Producto/Crear", {
             method: "POST",
             body: formData
         })
@@ -163,7 +183,7 @@ $("#btnGuardar").click(function () {
             });
     }
     else {
-        fetch("/Producto/Editar", {
+        secureFetch("/Producto/Editar", {
             method: "PUT",
             body: formData
         })
@@ -229,7 +249,7 @@ $("#tbdata tbody").on("click", ".btn-eliminar", function () {
             if (respuesta) {
                 $(".showSweetAlert").LoadingOverlay("show")
 
-                fetch(`/Producto/Eliminar?IdProducto=${data.idProducto}`, {
+                secureFetch(`/Producto/Eliminar?IdProducto=${data.idProducto}`, {
                     method: "DELETE",
                 })
                     .then(response => {

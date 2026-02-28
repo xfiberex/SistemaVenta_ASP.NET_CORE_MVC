@@ -1,6 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using SistemaVenta.AplicacionWeb.Utilidades.Automapper;
 using SistemaVenta.AplicacionWeb.Utilidades.Extensiones;
 using SistemaVenta.IOC;
@@ -10,7 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
+
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-CSRF-TOKEN";
+});
+
+builder.Services.AddHsts(options =>
+{
+    options.MaxAge = TimeSpan.FromDays(365);
+    options.IncludeSubDomains = true;
+});
 
 // Para el login
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -18,6 +33,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         option.LoginPath = "/Acceso/Login";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        option.SlidingExpiration = true;
+        option.Cookie.HttpOnly = true;
+        option.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        option.Cookie.SameSite = SameSiteMode.Strict;
     });
 
 // Servicios personalizados de la capa IOC, clase "Dependencia"
@@ -36,7 +55,10 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

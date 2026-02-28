@@ -21,11 +21,11 @@ namespace SistemaVenta.DAL.Implementacion
 
         // Este metodo permite obtener una entidad de una base de datos utilizando un filtro específico,
         // con programación asíncrona para no bloquear el hilo de ejecución principal.
-        public async Task<TEntity> Obtener(Expression<Func<TEntity, bool>> filtro)
+        public async Task<TEntity?> Obtener(Expression<Func<TEntity, bool>> filtro)
         {
             try
             {
-                TEntity entidad = await _dBContext.Set<TEntity>().FirstOrDefaultAsync(filtro);
+                TEntity? entidad = await _dBContext.Set<TEntity>().FirstOrDefaultAsync(filtro);
                 return entidad;
             }
             catch (Exception)
@@ -83,7 +83,7 @@ namespace SistemaVenta.DAL.Implementacion
         // Este método permite consultar entidades en una base de datos utilizando un filtro opcional,
         // devolviendo una consulta que puede ser más refinada con la aplicación de filtros -
         // adicionales o ser ejecutada para obtener los resultados finales.
-        public async Task<IQueryable<TEntity>> Consultar(Expression<Func<TEntity, bool>> filtro = null)
+        public async Task<IQueryable<TEntity>> Consultar(Expression<Func<TEntity, bool>>? filtro = null)
         {
             IQueryable<TEntity> queryEntidad = filtro == null ? _dBContext.Set<TEntity>() : _dBContext.Set<TEntity>().Where(filtro);
             return queryEntidad;

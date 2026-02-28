@@ -1,8 +1,23 @@
 ﻿
 let ValorImpuesto = 0;
+
+function sanitizeImageUrl(url) {
+    if (typeof url !== "string") {
+        return "";
+    }
+
+    try {
+        const parsedUrl = new URL(url, window.location.origin);
+        return ["http:", "https:"].includes(parsedUrl.protocol) ? parsedUrl.href : "";
+    }
+    catch {
+        return "";
+    }
+}
+
 $(document).ready(function () {
 
-    fetch("/Venta/ListaTipoDocumentoVenta")
+    secureFetch("/Venta/ListaTipoDocumentoVenta")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response)
         })
@@ -16,7 +31,7 @@ $(document).ready(function () {
             }
         })
 
-    fetch("/Negocio/Obtener")
+    secureFetch("/Negocio/Obtener")
         .then(response => {
             return response.ok ? response.json() : Promise.reject(response)
         })
@@ -70,20 +85,24 @@ function formatoResultados(data) {
     if (data.loading)
         return data.text;
 
-    var contenedor = $(
-    `<table width = "100%">
-        <tr>
-            <td style="width:60px">
-                <img style="height:77px; width:77px; margin-right:10px" src="${data.urlImagen}"/>
-            </td>
-            <td>
-                <p style="font-weight: bolder; margin:2px">${data.marca}</p>
-                <p style="margin:2px">Descripción: ${data.text}</p>
-                <p style="margin:2px">Categoría: ${data.categoria} - Precio: ${data.precio} RD$</p>
-            </td>
-        </tr>
-    </table>`
-    );
+    const contenedor = $("<table>").attr("width", "100%");
+    const fila = $("<tr>");
+    const columnaImagen = $("<td>").css("width", "60px");
+    const imagen = $("<img>")
+        .css({ height: "77px", width: "77px", marginRight: "10px" })
+        .attr("src", sanitizeImageUrl(data.urlImagen));
+
+    const columnaTexto = $("<td>");
+    const marca = $("<p>").css({ fontWeight: "bolder", margin: "2px" }).text(data.marca || "");
+    const descripcion = $("<p>").css("margin", "2px").text(`Descripción: ${data.text || ""}`);
+    const categoriaPrecio = $("<p>")
+        .css("margin", "2px")
+        .text(`Categoría: ${data.categoria || ""} - Precio: ${data.precio || 0} RD$`);
+
+    columnaImagen.append(imagen);
+    columnaTexto.append(marca, descripcion, categoriaPrecio);
+    fila.append(columnaImagen, columnaTexto);
+    contenedor.append(fila);
 
     return contenedor;
 }
@@ -107,7 +126,7 @@ $("#cboBuscarProducto").on("select2:select", function (e) {
     swal({
         title: data.marca,
         text: data.text,
-        imageUrl: data.urlImagen,
+        imageUrl: sanitizeImageUrl(data.urlImagen),
         type: "input",
         showCancelButton: true,
         closeOnConfirm: false,
@@ -224,7 +243,7 @@ $("#btnTerminarVenta").click(function () {
 
     $("#btnTerminarVenta").LoadingOverlay("show")
 
-    fetch("/Venta/RegistrarVenta", {
+    secureFetch("/Venta/RegistrarVenta", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=utf-8" },
         body: JSON.stringify(venta)

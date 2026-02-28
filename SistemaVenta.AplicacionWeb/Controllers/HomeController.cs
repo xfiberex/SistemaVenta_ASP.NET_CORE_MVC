@@ -45,6 +45,18 @@ namespace SistemaVenta.AplicacionWeb.Controllers
             return View();
         }
 
+        private bool TryGetUserId(out int userId)
+        {
+            userId = 0;
+
+            string? idUsuario = HttpContext.User.Claims
+                .Where(c => c.Type == ClaimTypes.NameIdentifier)
+                .Select(c => c.Value)
+                .SingleOrDefault();
+
+            return int.TryParse(idUsuario, out userId);
+        }
+
         [HttpGet]
         public async Task<IActionResult> ObtenerUsuario()
         {
@@ -52,13 +64,22 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                ClaimsPrincipal claimUser = HttpContext.User;
+                if (!TryGetUserId(out int idUsuario))
+                {
+                    response.Estado = false;
+                    response.Mensaje = "Sesión inválida.";
+                    return StatusCode(StatusCodes.Status401Unauthorized, response);
+                }
 
-                string idUsuario = claimUser.Claims
-                    .Where(c => c.Type == ClaimTypes.NameIdentifier)
-                    .Select(c => c.Value).SingleOrDefault();
+                Usuario? usuarioEntidad = await _usuarioService.ObtenerPorId(idUsuario);
+                if (usuarioEntidad == null)
+                {
+                    response.Estado = false;
+                    response.Mensaje = "Usuario no encontrado.";
+                    return StatusCode(StatusCodes.Status404NotFound, response);
+                }
 
-                VMUsuario usuario = _mapper.Map<VMUsuario>(await _usuarioService.ObtenerPorId(int.Parse(idUsuario)));
+                VMUsuario usuario = _mapper.Map<VMUsuario>(usuarioEntidad);
 
                 response.Estado = true;
                 response.Objeto = usuario;
@@ -78,15 +99,15 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                ClaimsPrincipal claimUser = HttpContext.User;
-
-                string idUsuario = claimUser.Claims
-                    .Where(c => c.Type == ClaimTypes.NameIdentifier)
-                    .Select(c => c.Value).SingleOrDefault();
+                if (!TryGetUserId(out int idUsuario))
+                {
+                    response.Estado = false;
+                    response.Mensaje = "Sesión inválida.";
+                    return StatusCode(StatusCodes.Status401Unauthorized, response);
+                }
 
                 Usuario entidad = _mapper.Map<Usuario>(modelo);
-
-                entidad.IdUsuario = int.Parse(idUsuario);
+                entidad.IdUsuario = idUsuario;
 
                 bool resultado = await _usuarioService.GuardarPerfil(entidad);
 
@@ -107,16 +128,23 @@ namespace SistemaVenta.AplicacionWeb.Controllers
 
             try
             {
-                ClaimsPrincipal claimUser = HttpContext.User;
+                if (!TryGetUserId(out int idUsuario))
+                {
+                    response.Estado = false;
+                    response.Mensaje = "Sesión inválida.";
+                    return StatusCode(StatusCodes.Status401Unauthorized, response);
+                }
 
-                // Indentificar al usuario
-                string idUsuario = claimUser.Claims
-                    .Where(c => c.Type == ClaimTypes.NameIdentifier)
-                    .Select(c => c.Value).SingleOrDefault();
+                if (string.IsNullOrWhiteSpace(modelo.claveActual) || string.IsNullOrWhiteSpace(modelo.claveNueva))
+                {
+                    response.Estado = false;
+                    response.Mensaje = "Debe ingresar la clave actual y la nueva clave.";
+                    return StatusCode(StatusCodes.Status400BadRequest, response);
+                }
 
                 // Identificar al usuario para cambiar su clave
                 bool resultado = await _usuarioService.CambiarClave(
-                    int.Parse(idUsuario),
+                    idUsuario,
                     modelo.claveActual,
                     modelo.claveNueva);
 

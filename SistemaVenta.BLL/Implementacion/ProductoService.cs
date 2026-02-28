@@ -24,9 +24,9 @@ namespace SistemaVenta.BLL.Implementacion
             return query.Include(c => c.IdCategoriaNavigation).ToList();
         }
 
-        public async Task<Producto> Crear(Producto entidad, Stream imagenStream = null, string nombreImagen = "")
+        public async Task<Producto> Crear(Producto entidad, Stream? imagenStream = null, string nombreImagen = "")
         {
-            Producto producto_existe = await _repositorio.Obtener(p => p.CodigoBarra == entidad.CodigoBarra);
+            Producto? producto_existe = await _repositorio.Obtener(p => p.CodigoBarra == entidad.CodigoBarra);
 
             if (producto_existe != null)
                 throw new Exception("El código de barras ya existe");
@@ -47,7 +47,8 @@ namespace SistemaVenta.BLL.Implementacion
                     throw new Exception("No se pudo crear el producto");
 
                 IQueryable<Producto> query = await _repositorio.Consultar(p => p.IdProducto == producto_creado.IdProducto);
-                producto_creado = query.Include(c => c.IdCategoriaNavigation).FirstOrDefault();
+                producto_creado = query.Include(c => c.IdCategoriaNavigation).FirstOrDefault()
+                    ?? throw new Exception("No se pudo obtener el producto creado");
 
                 return producto_creado;
             }
@@ -57,9 +58,9 @@ namespace SistemaVenta.BLL.Implementacion
             }
         }
 
-        public async Task<Producto> Editar(Producto entidad, Stream imagen = null, string NombreImagen = "")
+        public async Task<Producto> Editar(Producto entidad, Stream? imagen = null, string NombreImagen = "")
         {
-            Producto producto_existe = await _repositorio.Obtener(p => p.CodigoBarra == entidad.CodigoBarra && p.IdProducto != entidad.IdProducto);
+            Producto? producto_existe = await _repositorio.Obtener(p => p.CodigoBarra == entidad.CodigoBarra && p.IdProducto != entidad.IdProducto);
 
             if (producto_existe != null)
                 throw new TaskCanceledException("El codigo de barra ya existe");
@@ -85,7 +86,7 @@ namespace SistemaVenta.BLL.Implementacion
 
                 if (imagen != null)
                 {
-                    string urlImagen = await _firebaseService.SubirStorege(imagen, "carpeta_producto", producto_editar.NombreImagen);
+                    string urlImagen = await _firebaseService.SubirStorege(imagen, "carpeta_producto", producto_editar.NombreImagen ?? string.Empty);
                     producto_editar.UrlImagen = urlImagen;
                 }
 
@@ -108,16 +109,16 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Producto producto_encontrado = await _repositorio.Obtener(p => p.IdProducto == idProducto);
+                Producto? producto_encontrado = await _repositorio.Obtener(p => p.IdProducto == idProducto);
 
                 if (producto_encontrado == null)
                     throw new TaskCanceledException("El producto no existe");
 
-                string nombreImagen = producto_encontrado.NombreImagen;
+                string? nombreImagen = producto_encontrado.NombreImagen;
 
                 bool respuesta = await _repositorio.Eliminar(producto_encontrado);
 
-                if (respuesta)
+                if (respuesta && !string.IsNullOrWhiteSpace(nombreImagen))
                     await _firebaseService.EliminarStorege("carpeta_producto", nombreImagen);
 
                 return true;

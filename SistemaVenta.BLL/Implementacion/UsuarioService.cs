@@ -2,13 +2,12 @@
 using SistemaVenta.BLL.Interfaces;
 using SistemaVenta.DAL.Interfaces;
 using SistemaVenta.Entity;
-using System.Net;
-using System.Text;
 
 namespace SistemaVenta.BLL.Implementacion
 {
     public class UsuarioService : IUsuarioService
     {
+        private static readonly HttpClient _httpClient = new();
         private readonly IGenericRepository<Usuario> _repositorio;
         private readonly IFireBaseService _firebaseService;
         private readonly IUtilidadesService _utilidadesService;
@@ -27,6 +26,22 @@ namespace SistemaVenta.BLL.Implementacion
             _correoService = correoService;
         }
 
+        private static async Task<string> ObtenerHtmlPlantillaCorreoAsync(string urlPlantillaCorreo)
+        {
+            if (string.IsNullOrWhiteSpace(urlPlantillaCorreo))
+            {
+                return string.Empty;
+            }
+
+            using HttpResponseMessage response = await _httpClient.GetAsync(urlPlantillaCorreo);
+            if (!response.IsSuccessStatusCode)
+            {
+                return string.Empty;
+            }
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
         /* Este método encapsula la lógica para consultar y devolver una lista de usuarios 
          * junto con la información de sus roles asociados de manera asíncrona */
         public async Task<List<Usuario>> Lista()
@@ -38,9 +53,9 @@ namespace SistemaVenta.BLL.Implementacion
         /* Este método encapsula la lógica para crear un nuevo usuario en el sistema, manejar la subida de una imagen (si se proporciona), 
          * enviar un correo electrónico de confirmación (si se proporciona una plantilla de correo electrónico) y devolver el usuario recién 
          * creado con la información de su rol asociado. */
-        public async Task<Usuario> Crear(Usuario entidad, Stream Foto = null, string NombreFoto = "", string UrlPlantillaCorreo = "")
+        public async Task<Usuario> Crear(Usuario entidad, Stream? Foto = null, string NombreFoto = "", string UrlPlantillaCorreo = "")
         {
-            Usuario usuario_Existe = await _repositorio.Obtener(u => u.Correo == entidad.Correo);
+            Usuario? usuario_Existe = await _repositorio.Obtener(u => u.Correo == entidad.Correo);
 
             if (usuario_Existe != null)
             {
@@ -50,7 +65,7 @@ namespace SistemaVenta.BLL.Implementacion
             try
             {
                 string clave_generada = _utilidadesService.GenerarClave();
-                entidad.Clave = _utilidadesService.ConvertirSha256(clave_generada);
+                entidad.Clave = _utilidadesService.HashearClave(clave_generada);
                 entidad.NombreFoto = NombreFoto;
 
                 if (Foto != null)
@@ -69,29 +84,7 @@ namespace SistemaVenta.BLL.Implementacion
                 if (!string.IsNullOrEmpty(UrlPlantillaCorreo))
                 {
                     UrlPlantillaCorreo = UrlPlantillaCorreo.Replace("[correo]", usuario_creado.Correo).Replace("[clave]", clave_generada);
-                    string htmlCorreo = "";
-
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UrlPlantillaCorreo);
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        using (Stream dataStream = response.GetResponseStream())
-                        {
-                            StreamReader readerStream = null;
-
-                            if (response.CharacterSet == null)
-                            {
-                                readerStream = new StreamReader(dataStream);
-                            }
-                            else
-                            {
-                                readerStream = new StreamReader(dataStream, Encoding.GetEncoding(response.CharacterSet));
-                            }
-
-                            htmlCorreo = readerStream.ReadToEnd();
-                        }
-                    }
+                    string htmlCorreo = await ObtenerHtmlPlantillaCorreoAsync(UrlPlantillaCorreo);
 
                     if (!string.IsNullOrEmpty(htmlCorreo))
                     {
@@ -103,7 +96,7 @@ namespace SistemaVenta.BLL.Implementacion
                 usuario_creado = query.Include(r => r.IdRolNavigation).First();
                 return usuario_creado;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -112,9 +105,9 @@ namespace SistemaVenta.BLL.Implementacion
         /*  Este método encapsula la lógica para editar la información de un usuario en el sistema, 
          *  incluyendo la posibilidad de actualizar su imagen de perfil, y devuelve el usuario editado 
          *  con la información de su rol asociado. */
-        public async Task<Usuario> Editar(Usuario entidad, Stream Foto = null, string NombreFoto = "")
+        public async Task<Usuario> Editar(Usuario entidad, Stream? Foto = null, string NombreFoto = "")
         {
-            Usuario usuario_Existe = await _repositorio.Obtener(u => u.Correo == entidad.Correo && u.IdUsuario != entidad.IdUsuario);
+            Usuario? usuario_Existe = await _repositorio.Obtener(u => u.Correo == entidad.Correo && u.IdUsuario != entidad.IdUsuario);
 
             if (usuario_Existe != null)
             {
@@ -132,14 +125,14 @@ namespace SistemaVenta.BLL.Implementacion
                 usuario_editar.IdRol = entidad.IdRol;
                 usuario_editar.EsActivo = entidad.EsActivo;
 
-                if (usuario_editar.NombreFoto == "")
+                if (string.IsNullOrWhiteSpace(usuario_editar.NombreFoto))
                 {
                     usuario_editar.NombreFoto = NombreFoto;
                 }
 
                 if (Foto != null)
                 {
-                    string urlFoto = await _firebaseService.SubirStorege(Foto, "carpeta_usuario", usuario_editar.NombreFoto);
+                    string urlFoto = await _firebaseService.SubirStorege(Foto, "carpeta_usuario", usuario_editar.NombreFoto ?? string.Empty);
                     usuario_editar.UrlFoto = urlFoto;
                 }
                 bool respuesta = await _repositorio.Editar(usuario_editar);
@@ -165,17 +158,17 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Usuario usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == IdUsuario);
+                Usuario? usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == IdUsuario);
 
                 if (usuario_encontrado == null)
                 {
                     throw new TaskCanceledException("El usuario no existe");
                 }
 
-                string nombreFoto = usuario_encontrado.NombreFoto;
+                string? nombreFoto = usuario_encontrado.NombreFoto;
                 bool respuesta = await _repositorio.Eliminar(usuario_encontrado);
 
-                if (respuesta)
+                if (respuesta && !string.IsNullOrWhiteSpace(nombreFoto))
                 {
                     await _firebaseService.EliminarStorege("carpeta_usuario", nombreFoto);
                 }
@@ -189,21 +182,37 @@ namespace SistemaVenta.BLL.Implementacion
 
         /* Este método busca un usuario en la base de datos utilizando las credenciales de correo electrónico y contraseña 
          * proporcionadas, y devuelve el usuario encontrado si existe, o null si no se encuentra ningún usuario. */
-        public async Task<Usuario> ObtenerPorCredenciales(string correo, string clave)
+        public async Task<Usuario?> ObtenerPorCredenciales(string correo, string clave)
         {
-            string clave_encriptada = _utilidadesService.ConvertirSha256(clave);
+            Usuario? usuario_encontrado = await _repositorio.Obtener(u => u.Correo.Equals(correo));
 
-            Usuario usuario_encontrado = await _repositorio.Obtener(u => u.Correo.Equals(correo) && u.Clave.Equals(clave_encriptada));
+            if (usuario_encontrado == null)
+            {
+                return null;
+            }
+
+            bool credencialesValidas = _utilidadesService.VerificarClave(clave, usuario_encontrado.Clave);
+            if (!credencialesValidas)
+            {
+                return null;
+            }
+
+            if (_utilidadesService.RequiereRehash(usuario_encontrado.Clave))
+            {
+                usuario_encontrado.Clave = _utilidadesService.HashearClave(clave);
+                await _repositorio.Editar(usuario_encontrado);
+            }
+
             return usuario_encontrado;
         }
 
         /* Este método encapsula la lógica para obtener un usuario de la base de datos por su ID, incluyendo la información de su rol asociado, y 
          * devuelve el usuario encontrado o null si no se encuentra ninguno. */
-        public async Task<Usuario> ObtenerPorId(int IdUsuario)
+        public async Task<Usuario?> ObtenerPorId(int IdUsuario)
         {
             IQueryable<Usuario> query = await _repositorio.Consultar(u => u.IdUsuario == IdUsuario);
 
-            Usuario resultado = query.Include(r => r.IdRolNavigation).FirstOrDefault();
+            Usuario? resultado = query.Include(r => r.IdRolNavigation).FirstOrDefault();
             return resultado;
         }
 
@@ -213,7 +222,7 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Usuario usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == entidad.IdUsuario);
+                Usuario? usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == entidad.IdUsuario);
 
                 if (usuario_encontrado == null)
                 {
@@ -237,19 +246,19 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Usuario usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == IdUsuario);
+                Usuario? usuario_encontrado = await _repositorio.Obtener(u => u.IdUsuario == IdUsuario);
 
                 if (usuario_encontrado == null)
                 {
                     throw new TaskCanceledException("El usuario no existe");
                 }
 
-                if (usuario_encontrado.Clave != _utilidadesService.ConvertirSha256(ClaveActual))
+                if (!_utilidadesService.VerificarClave(ClaveActual, usuario_encontrado.Clave))
                 {
                     throw new TaskCanceledException("La contraseña ingresada como actual no es correcta");
                 }
 
-                usuario_encontrado.Clave = _utilidadesService.ConvertirSha256(ClaveNueva);
+                usuario_encontrado.Clave = _utilidadesService.HashearClave(ClaveNueva);
                 bool respuesta = await _repositorio.Editar(usuario_encontrado);
                 return respuesta;
             }
@@ -266,42 +275,18 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                Usuario usuario_encontrado = await _repositorio.Obtener(u => u.Correo == Correo);
+                Usuario? usuario_encontrado = await _repositorio.Obtener(u => u.Correo == Correo);
 
-                if (usuario_encontrado != null)
+                if (usuario_encontrado == null)
                 {
                     throw new TaskCanceledException("No encontramos ningun usuario asociado al correo");
                 }
 
                 string clave_generada = _utilidadesService.GenerarClave();
-                usuario_encontrado.Clave = _utilidadesService.ConvertirSha256(clave_generada);
+                usuario_encontrado.Clave = _utilidadesService.HashearClave(clave_generada);
 
                 UrlPlantillaCorreo = UrlPlantillaCorreo.Replace("[clave]", clave_generada);
-                string htmlCorreo = "";
-
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(UrlPlantillaCorreo);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    using (Stream dataStream = response.GetResponseStream())
-                    {
-                        StreamReader readerStream = null;
-
-                        if (response.CharacterSet == null)
-                        {
-                            readerStream = new StreamReader(dataStream);
-                        }
-                        else
-                        {
-                            readerStream = new StreamReader(dataStream, Encoding.GetEncoding(response.CharacterSet));
-                        }
-
-                        htmlCorreo = readerStream.ReadToEnd();
-                        response.Close();
-                        readerStream.Close();
-                    }
-                }
+                string htmlCorreo = await ObtenerHtmlPlantillaCorreoAsync(UrlPlantillaCorreo);
 
                 bool correo_enviado = false;
 

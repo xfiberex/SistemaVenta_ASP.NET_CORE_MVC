@@ -22,13 +22,20 @@ namespace SistemaVenta.AplicacionWeb.Utilidades.ViewComponents
             ClaimsPrincipal claimUser = HttpContext.User;
             List<VMMenu> listaMenus;
 
-            if (claimUser.Identity.IsAuthenticated)
+            if (claimUser.Identity?.IsAuthenticated == true)
             {
-                string idUsuario = claimUser.Claims
+                string? idUsuario = claimUser.Claims
                     .Where(c => c.Type == ClaimTypes.NameIdentifier)
                     .Select(c => c.Value).SingleOrDefault();
 
-                listaMenus = _mapper.Map<List<VMMenu>>(await _menuService.ObtenerMenus(int.Parse(idUsuario)));
+                if (int.TryParse(idUsuario, out int usuarioId))
+                {
+                    listaMenus = _mapper.Map<List<VMMenu>>(await _menuService.ObtenerMenus(usuarioId));
+                }
+                else
+                {
+                    listaMenus = new List<VMMenu>();
+                }
             }
             else
             {

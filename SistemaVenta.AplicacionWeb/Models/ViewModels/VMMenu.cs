@@ -2,11 +2,6 @@
 {
     public class VMMenu
     {
-        public VMMenu()
-        {
-            SubMenus = new List<VMMenu>();
-        }
-
         public string? Descripcion { get; set; }
 
         public string? Icono { get; set; }
@@ -15,6 +10,6 @@
 
         public string? PaginaAccion { get; set; }
 
-        public virtual ICollection<VMMenu>? SubMenus { get; set; }
+        public virtual ICollection<VMMenu> SubMenus { get; set; } = new List<VMMenu>();
     }
 }
