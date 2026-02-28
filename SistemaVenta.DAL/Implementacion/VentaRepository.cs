@@ -45,9 +45,9 @@ namespace SistemaVenta.DAL.Implementacion
                     _dbContext.NumeroCorrelativos.Update(correlativo);
                     await _dbContext.SaveChangesAsync();
 
-                    string ceros = string.Concat(Enumerable.Repeat("0", correlativo.CantidadDigitos.Value));
+                    string ceros = string.Concat(Enumerable.Repeat("0", correlativo.CantidadDigitos));
                     string numeroVenta = ceros + correlativo.UltimoNumero.ToString();
-                    numeroVenta = numeroVenta.Substring(numeroVenta.Length - correlativo.CantidadDigitos.Value, correlativo.CantidadDigitos.Value);
+                    numeroVenta = numeroVenta.Substring(numeroVenta.Length - correlativo.CantidadDigitos, correlativo.CantidadDigitos);
 
                     entidad.NumeroVenta = numeroVenta;
                     await _dbContext.Venta.AddAsync(entidad);
@@ -56,10 +56,10 @@ namespace SistemaVenta.DAL.Implementacion
                     ventaGenerada = entidad;
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     transaction.Rollback();
-                    throw ex;
+                    throw;
                 }
             }
             return ventaGenerada;
@@ -75,8 +75,8 @@ namespace SistemaVenta.DAL.Implementacion
                 .ThenInclude(u => u.IdUsuarioNavigation)
                 .Include(v => v.IdVentaNavigation)
                 .ThenInclude(tdv => tdv.IdTipoDocumentoVentaNavigation)
-                .Where(dv => dv.IdVentaNavigation.FechaRegistro.Value.Date >= FechaInicio.Date &&
-                dv.IdVentaNavigation.FechaRegistro.Value.Date <= FechaFin.Date).ToListAsync();
+                .Where(dv => dv.IdVentaNavigation.FechaRegistro.Date >= FechaInicio.Date &&
+                dv.IdVentaNavigation.FechaRegistro.Date <= FechaFin.Date).ToListAsync();
 
             return listaResumen;
         }

@@ -18,7 +18,7 @@ public partial class Negocio
 
     public string? Telefono { get; set; }
 
-    public decimal? PorcentajeImpuesto { get; set; }
+    public decimal PorcentajeImpuesto { get; set; }
 
-    public string? SimboloMoneda { get; set; }
+    public string SimboloMoneda { get; set; } = null!;
 }

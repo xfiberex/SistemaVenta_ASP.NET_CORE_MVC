@@ -9,7 +9,7 @@ insert into rol(descripcion,esActivo) values
 --________________________________ INSERTAR USUARIO ________________________________
 SELECT * FROM Rol
 SELECT * FROM Usuario
---clave : 159
+--clave : 159 o 123
 insert into Usuario(nombre,correo,telefono,idRol,urlFoto,nombreFoto,clave,esActivo) values
 ('User Admin','useradmin@gmail.com','000-000-0000',1,'','','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1)
 

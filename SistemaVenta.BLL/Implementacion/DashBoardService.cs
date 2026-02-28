@@ -31,7 +31,7 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Value.Date >= FechaInicio.Date);
+                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Date >= FechaInicio.Date);
                 int total = query.Count();
                 return total;
             }
@@ -45,10 +45,10 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Value.Date >= FechaInicio.Date);
+                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Date >= FechaInicio.Date);
                 decimal resultado = query
                     .Select(v => v.Total)
-                    .Sum(v => v.Value);
+                    .Sum();
 
                 string formattedTotal = resultado.ToString("C", CultureInfo.CreateSpecificCulture("es-US"));
 
@@ -92,10 +92,10 @@ namespace SistemaVenta.BLL.Implementacion
         {
             try
             {
-                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Value.Date >= FechaInicio.Date);
+                IQueryable<Venta> query = await _repositorioVenta.Consultar(v => v.FechaRegistro.Date >= FechaInicio.Date);
 
                 Dictionary<string, int> resultado = query
-                    .GroupBy(v => v.FechaRegistro.Value.Date).OrderByDescending(g => g.Key)
+                    .GroupBy(v => v.FechaRegistro.Date).OrderByDescending(g => g.Key)
                     .Select(dv => new { producto = dv.Key.ToString("dd/MM/yyyy"), total = dv.Count() })
                     .ToDictionary(keySelector: r => r.producto, elementSelector: r => r.total);
 
@@ -115,7 +115,7 @@ namespace SistemaVenta.BLL.Implementacion
 
                 Dictionary<string, int> resultado = query
                     .Include(v => v.IdVentaNavigation)
-                    .Where(dv => dv.IdVentaNavigation.FechaRegistro.Value.Date >= FechaInicio.Date)
+                    .Where(dv => dv.IdVentaNavigation.FechaRegistro.Date >= FechaInicio.Date)
                     .GroupBy(dv => dv.DescripcionProducto).OrderByDescending(g => g.Count())
                     .Select(dv => new { producto = dv.Key, total = dv.Count() }).Take(5)
                     .ToDictionary(keySelector: r => r.producto, elementSelector: r => r.total);

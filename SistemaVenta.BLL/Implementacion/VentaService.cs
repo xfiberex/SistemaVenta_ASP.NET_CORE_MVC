@@ -51,8 +51,8 @@ namespace SistemaVenta.BLL.Implementacion
                 DateTime fecha_fin = DateTime.ParseExact(fechaFin, "dd/MM/yyyy", new CultureInfo("es-US"));
 
                 return query.Where(v =>
-                    v.FechaRegistro.Value.Date >= fecha_inicio.Date &&
-                    v.FechaRegistro.Value.Date <= fecha_fin.Date)
+                    v.FechaRegistro.Date >= fecha_inicio.Date &&
+                    v.FechaRegistro.Date <= fecha_fin.Date)
                     .Include(tdv => tdv.IdTipoDocumentoVentaNavigation)
                     .Include(u => u.IdUsuarioNavigation)
                     .Include(dv => dv.DetalleVenta)

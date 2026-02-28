@@ -46,10 +46,11 @@ public partial class DBVENTAContext : DbContext
         {
             entity.HasKey(e => e.IdCategoria).HasName("PK__Categori__8A3D240CC19E75F9");
 
+            entity.HasIndex(e => e.Descripcion, "UQ_Categoria_Descripcion").IsUnique();
+
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Descripcion)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("descripcion");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -60,21 +61,18 @@ public partial class DBVENTAContext : DbContext
 
         modelBuilder.Entity<Configuracion>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Configuracion");
+            entity.HasKey(e => new { e.Recurso, e.Propiedad }).HasName("PK_Configuracion");
+
+            entity.ToTable("Configuracion");
 
             entity.Property(e => e.Propiedad)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("propiedad");
             entity.Property(e => e.Recurso)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("recurso");
             entity.Property(e => e.Valor)
-                .HasMaxLength(60)
-                .IsUnicode(false)
+                .HasMaxLength(200)
                 .HasColumnName("valor");
         });
 
@@ -89,14 +87,12 @@ public partial class DBVENTAContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("categoriaProducto");
             entity.Property(e => e.DescripcionProducto)
-                .HasMaxLength(100)
-                .IsUnicode(false)
+                .HasMaxLength(200)
                 .HasColumnName("descripcionProducto");
             entity.Property(e => e.IdProducto).HasColumnName("idProducto");
             entity.Property(e => e.IdVenta).HasColumnName("idVenta");
             entity.Property(e => e.MarcaProducto)
                 .HasMaxLength(100)
-                .IsUnicode(false)
                 .HasColumnName("marcaProducto");
             entity.Property(e => e.Precio)
                 .HasColumnType("decimal(10, 2)")
@@ -118,12 +114,10 @@ public partial class DBVENTAContext : DbContext
 
             entity.Property(e => e.IdMenu).HasColumnName("idMenu");
             entity.Property(e => e.Controlador)
-                .HasMaxLength(30)
-                .IsUnicode(false)
+                .HasMaxLength(50)
                 .HasColumnName("controlador");
             entity.Property(e => e.Descripcion)
-                .HasMaxLength(30)
-                .IsUnicode(false)
+                .HasMaxLength(50)
                 .HasColumnName("descripcion");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -131,13 +125,11 @@ public partial class DBVENTAContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.Icono)
-                .HasMaxLength(30)
-                .IsUnicode(false)
+                .HasMaxLength(50)
                 .HasColumnName("icono");
             entity.Property(e => e.IdMenuPadre).HasColumnName("idMenuPadre");
             entity.Property(e => e.PaginaAccion)
-                .HasMaxLength(30)
-                .IsUnicode(false)
+                .HasMaxLength(50)
                 .HasColumnName("paginaAccion");
 
             entity.HasOne(d => d.IdMenuPadreNavigation).WithMany(p => p.InverseIdMenuPadreNavigation)
@@ -155,16 +147,13 @@ public partial class DBVENTAContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("idNegocio");
             entity.Property(e => e.Correo)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("correo");
             entity.Property(e => e.Direccion)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(200)
                 .HasColumnName("direccion");
             entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("nombre");
             entity.Property(e => e.NombreLogo)
                 .HasMaxLength(100)
@@ -175,19 +164,16 @@ public partial class DBVENTAContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("numeroDocumento");
             entity.Property(e => e.PorcentajeImpuesto)
-                .HasColumnType("decimal(10, 2)")
+                .HasColumnType("decimal(5, 2)")
                 .HasColumnName("porcentajeImpuesto");
             entity.Property(e => e.SimboloMoneda)
                 .HasMaxLength(5)
-                .IsUnicode(false)
                 .HasColumnName("simboloMoneda");
             entity.Property(e => e.Telefono)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(20)
                 .HasColumnName("telefono");
             entity.Property(e => e.UrlLogo)
                 .HasMaxLength(500)
-                .IsUnicode(false)
                 .HasColumnName("urlLogo");
         });
 
@@ -204,7 +190,6 @@ public partial class DBVENTAContext : DbContext
                 .HasColumnName("fechaActualizacion");
             entity.Property(e => e.Gestion)
                 .HasMaxLength(100)
-                .IsUnicode(false)
                 .HasColumnName("gestion");
             entity.Property(e => e.UltimoNumero).HasColumnName("ultimoNumero");
         });
@@ -213,16 +198,16 @@ public partial class DBVENTAContext : DbContext
         {
             entity.HasKey(e => e.IdProducto).HasName("PK__Producto__07F4A132697CEC5A");
 
+            entity.HasIndex(e => e.CodigoBarra, "UQ_Producto_CodigoBarra").IsUnique();
+
             entity.ToTable("Producto");
 
             entity.Property(e => e.IdProducto).HasColumnName("idProducto");
             entity.Property(e => e.CodigoBarra)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("codigoBarra");
             entity.Property(e => e.Descripcion)
-                .HasMaxLength(100)
-                .IsUnicode(false)
+                .HasMaxLength(200)
                 .HasColumnName("descripcion");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -231,12 +216,10 @@ public partial class DBVENTAContext : DbContext
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Marca)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("marca");
             entity.Property(e => e.NombreImagen)
                 .HasMaxLength(100)
-                .IsUnicode(false)
                 .HasColumnName("nombreImagen");
             entity.Property(e => e.Precio)
                 .HasColumnType("decimal(10, 2)")
@@ -244,7 +227,6 @@ public partial class DBVENTAContext : DbContext
             entity.Property(e => e.Stock).HasColumnName("stock");
             entity.Property(e => e.UrlImagen)
                 .HasMaxLength(500)
-                .IsUnicode(false)
                 .HasColumnName("urlImagen");
 
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos)
@@ -256,12 +238,13 @@ public partial class DBVENTAContext : DbContext
         {
             entity.HasKey(e => e.IdRol).HasName("PK__Rol__3C872F7677015357");
 
+            entity.HasIndex(e => e.Descripcion, "UQ_Rol_Descripcion").IsUnique();
+
             entity.ToTable("Rol");
 
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(30)
-                .IsUnicode(false)
                 .HasColumnName("descripcion");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -273,6 +256,8 @@ public partial class DBVENTAContext : DbContext
         modelBuilder.Entity<RolMenu>(entity =>
         {
             entity.HasKey(e => e.IdRolMenu).HasName("PK__RolMenu__CD2045D8E0B6BA1B");
+
+            entity.HasIndex(e => new { e.IdRol, e.IdMenu }, "UQ_RolMenu_Combo").IsUnique();
 
             entity.ToTable("RolMenu");
 
@@ -298,10 +283,11 @@ public partial class DBVENTAContext : DbContext
         {
             entity.HasKey(e => e.IdTipoDocumentoVenta).HasName("PK__TipoDocu__A9D59AEEA40C4B09");
 
+            entity.HasIndex(e => e.Descripcion, "UQ_TipoDocumentoVenta_Descripcion").IsUnique();
+
             entity.Property(e => e.IdTipoDocumentoVenta).HasColumnName("idTipoDocumentoVenta");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(50)
-                .IsUnicode(false)
                 .HasColumnName("descripcion");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -314,16 +300,16 @@ public partial class DBVENTAContext : DbContext
         {
             entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A6E3765304");
 
+            entity.HasIndex(e => e.Correo, "UQ_Usuario_Correo").IsUnique();
+
             entity.ToTable("Usuario");
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Clave)
-                .HasMaxLength(100)
-                .IsUnicode(false)
+                .HasMaxLength(200)
                 .HasColumnName("clave");
             entity.Property(e => e.Correo)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("correo");
             entity.Property(e => e.EsActivo).HasColumnName("esActivo");
             entity.Property(e => e.FechaRegistro)
@@ -332,20 +318,16 @@ public partial class DBVENTAContext : DbContext
                 .HasColumnName("fechaRegistro");
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("nombre");
             entity.Property(e => e.NombreFoto)
                 .HasMaxLength(100)
-                .IsUnicode(false)
                 .HasColumnName("nombreFoto");
             entity.Property(e => e.Telefono)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(20)
                 .HasColumnName("telefono");
             entity.Property(e => e.UrlFoto)
                 .HasMaxLength(500)
-                .IsUnicode(false)
                 .HasColumnName("urlFoto");
 
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
@@ -359,8 +341,7 @@ public partial class DBVENTAContext : DbContext
 
             entity.Property(e => e.IdVenta).HasColumnName("idVenta");
             entity.Property(e => e.DocumentoCliente)
-                .HasMaxLength(10)
-                .IsUnicode(false)
+                .HasMaxLength(20)
                 .HasColumnName("documentoCliente");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
@@ -372,17 +353,15 @@ public partial class DBVENTAContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("impuestoTotal");
             entity.Property(e => e.NombreCliente)
-                .HasMaxLength(20)
-                .IsUnicode(false)
+                .HasMaxLength(100)
                 .HasColumnName("nombreCliente");
             entity.Property(e => e.NumeroVenta)
-                .HasMaxLength(6)
-                .IsUnicode(false)
+                .HasMaxLength(10)
                 .HasColumnName("numeroVenta");
             entity.Property(e => e.SubTotal)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("subTotal");
-            entity.Property(e => e.Total).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.Total).HasColumnType("decimal(10, 2)");  
 
             entity.HasOne(d => d.IdTipoDocumentoVentaNavigation).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.IdTipoDocumentoVenta)

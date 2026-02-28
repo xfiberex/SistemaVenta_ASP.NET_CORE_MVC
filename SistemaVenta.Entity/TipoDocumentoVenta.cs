@@ -9,11 +9,11 @@ public partial class TipoDocumentoVenta
 
     public int IdTipoDocumentoVenta { get; set; }
 
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; } = null!;
 
-    public bool? EsActivo { get; set; }
+    public bool EsActivo { get; set; }
 
-    public DateTime? FechaRegistro { get; set; }
+    public DateTime FechaRegistro { get; set; }
 
     public virtual ICollection<Venta> Venta { get; set; }
 }

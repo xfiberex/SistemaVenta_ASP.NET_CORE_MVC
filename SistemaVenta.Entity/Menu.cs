@@ -10,7 +10,7 @@ public partial class Menu
 
     public int IdMenu { get; set; }
 
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; } = null!;
 
     public int? IdMenuPadre { get; set; }
 
@@ -20,9 +20,9 @@ public partial class Menu
 
     public string? PaginaAccion { get; set; }
 
-    public bool? EsActivo { get; set; }
+    public bool EsActivo { get; set; }
 
-    public DateTime? FechaRegistro { get; set; }
+    public DateTime FechaRegistro { get; set; }
 
     public virtual Menu? IdMenuPadreNavigation { get; set; }
 
