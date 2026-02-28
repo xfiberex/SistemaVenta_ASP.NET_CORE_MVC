@@ -7,103 +7,81 @@
 <html lang="es">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Mi Tienda - Restablecer Clave</title>
-
-    <!-- Custom fonts for this template-->
+    <title>FiberTech - Restablecer Clave</title>
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="~/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/css/OtrosEstilos.css" rel="stylesheet">
-
-    <style>
-        body {
-            height: 80vh; /* Altura del viewport */
-            display: flex; /* Habilitar centrado vertical */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            font-family: 'Segoe UI Variable Text';
-        }
-    </style>
-
 </head>
 
 <body class="bg-gradient-info-black">
 
     <div class="container">
-
-        <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg my-4 my-md-5" style="border-radius: 0.75rem; overflow: hidden;">
                     <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
+                        <div class="row no-gutters">
                             <div class="col-lg-6 d-none d-lg-block bg-password-image-gaming"></div>
                             <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">¿Olvidó su contraseña?</h1>
-                                        <p class="mb-4">Ingrese su correo de sesión y le enviaremos una nueva contraseña</p>
+                                <div class="p-4 p-md-5">
+                                    <div class="text-center mb-4">
+                                        <div class="mb-3">
+                                            <i class="fas fa-key fa-2x" style="color: var(--ft-primary);"></i>
+                                        </div>
+                                        <h1 class="h4 mb-1" style="font-weight: 700; color: var(--ft-text-primary);">¿Olvidó su contraseña?</h1>
+                                        <p class="small" style="color: var(--ft-text-secondary);">Ingrese su correo de sesión y le enviaremos una nueva contraseña</p>
                                     </div>
                                     <form class="user" asp-controller="Acceso" asp-action="RestablecerClave" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" asp-for="Correo" placeholder="Ingrese su correo">
+                                            <label class="small" style="font-weight: 600; color: var(--ft-text-secondary);">Correo electrónico</label>
+                                            <input type="email" class="form-control form-control-user" asp-for="Correo" placeholder="correo@ejemplo.com">
                                         </div>
                                         @if (ViewData["Mensaje"] != null)
                                         {
-                                                <div class="form-group">
-                                                    <div class="alert alert-success" role="alert">
-                                                    @ViewData["Mensaje"]
-                                                    </div>
+                                            <div class="form-group">
+                                                <div class="alert alert-success" role="alert">
+                                                    <i class="fas fa-check-circle mr-1"></i> @ViewData["Mensaje"]
                                                 </div>
+                                            </div>
                                         }
                                         @if (ViewData["MensajeError"] != null)
                                         {
-                                                <div class="form-group">
-                                                    <div class="alert alert-danger" role="alert">
-                                                    @ViewData["MensajeError"]
-                                                    </div>
+                                            <div class="form-group">
+                                                <div class="alert alert-danger" role="alert">
+                                                    <i class="fas fa-exclamation-circle mr-1"></i> @ViewData["MensajeError"]
                                                 </div>
+                                            </div>
                                         }
-                                        
                                         @if (ViewData["MensajeCampoVacio"] != null)
                                         {
                                             <div class="form-group">
                                                 <div class="alert alert-danger" role="alert">
-                                                    @ViewData["MensajeCampoVacio"]
+                                                    <i class="fas fa-exclamation-circle mr-1"></i> @ViewData["MensajeCampoVacio"]
                                                 </div>
                                             </div>
                                         }
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Reestablecer Contraseña
+                                            <i class="fas fa-paper-plane mr-1"></i> Restablecer Contraseña
                                         </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="@Url.Action("Login", "Acceso")">Iniciar Sesión</a>
+                                        <a class="small" href="@Url.Action("Login", "Acceso")" style="color: var(--ft-primary); font-weight: 500;">
+                                            <i class="fas fa-arrow-left mr-1"></i> Volver a Iniciar Sesión
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </body>

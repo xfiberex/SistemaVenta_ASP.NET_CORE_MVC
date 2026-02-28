@@ -124,6 +124,15 @@ function mostrarModal(modelo = MODELO_BASE) {
     $("#modalData").modal("show")
 }
 
+$("#btnGenerarCodigo").click(function () {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let codigo = '';
+    for (let i = 0; i < 15; i++) {
+        codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    $("#txtCodigoBarra").val(codigo);
+});
+
 $("#btnNuevo").click(function () {
     mostrarModal()
 })

@@ -15,19 +15,19 @@
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-header-black">
+    <div class="card-header py-3 bg-header-black d-flex align-items-center">
+        <i class="fas fa-tags mr-2 text-white" style="opacity: 0.7;"></i>
         <h6 class="m-0 font-weight-bold text-white">Lista de Categorias</h6>
     </div>
     <div class="card-body">
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row mb-3">
+            <div class="col-md-3 col-12">
                 <button class="btn btn-success" id="btnNuevo"><i class="fas fa-plus-circle"></i> Nueva Categoria</button>
             </div>
         </div>
         <hr />
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -40,7 +40,6 @@
                         
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -59,13 +58,13 @@
                 <form>
                     <input type="hidden" value="0" id="txtId">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-12">
                             <div class="form-row">
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-md-6 col-12">
                                     <label for="txtDescripcion">Descripcion</label>
                                     <input type="text" class="form-control form-control-sm" id="txtDescripcion">
                                 </div>
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-md-6 col-12">
                                     <label for="cboEstado">Estado</label>
                                     <select class="form-control form-control-sm" id="cboEstado">
                                         <option value="1">Activo</option>
@@ -78,8 +77,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar"><i class="fas fa-save mr-1"></i> Guardar</button>
+                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><i class="fas fa-times mr-1"></i> Cancelar</button>
             </div>
         </div>
     </div>

@@ -5,16 +5,17 @@
 }
 
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-header-black">
+    <div class="card-header py-3 bg-header-black d-flex align-items-center">
+        <i class="fas fa-building mr-2 text-white" style="opacity: 0.7;"></i>
         <h6 class="m-0 font-weight-bold text-white">Datos del Negocio</h6>
     </div>
     <div class="card-body">
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-12">
                 <form>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-lg-6 col-md-8 col-12">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="txtNumeroDocumento">Numero Documento</label>
@@ -56,19 +57,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <img id="imgLogo" style="max-width:200px;" src="" class="rounded" alt="Logo">
-                                </div>
+                        <div class="col-lg-4 col-md-4 col-12 mt-3 mt-md-0">
+                            <div class="text-center text-md-left">
+                                <img id="imgLogo" style="max-width:200px;" src="" class="rounded mb-3" alt="Logo">
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-success btn-sm" type="button" id="btnGuardarCambios">Guardar Cambios</button>
-                                </div>
-                            </div>
-
+                            <button class="btn btn-success btn-sm" type="button" id="btnGuardarCambios">
+                                <i class="fas fa-save mr-1"></i> Guardar Cambios
+                            </button>
                         </div>
 
                     </div>

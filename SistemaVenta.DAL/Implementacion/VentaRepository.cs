@@ -71,13 +71,13 @@ namespace SistemaVenta.DAL.Implementacion
         public async Task<List<DetalleVenta>> Reporte(DateTime FechaInicio, DateTime FechaFin)
         {
             List<DetalleVenta> listaResumen = await _dbContext.DetalleVenta
-                .Include(v => v.IdVentaNavigation)
+                .Include(v => v.IdVentaNavigation!)
                 .ThenInclude(u => u.IdUsuarioNavigation)
-                .Include(v => v.IdVentaNavigation)
+                .Include(v => v.IdVentaNavigation!)
                 .ThenInclude(tdv => tdv.IdTipoDocumentoVentaNavigation)
                 .Where(dv => dv.IdVentaNavigation != null &&
-                dv.IdVentaNavigation.FechaRegistro.Date >= FechaInicio.Date &&
-                dv.IdVentaNavigation.FechaRegistro.Date <= FechaFin.Date).ToListAsync();
+                dv.IdVentaNavigation!.FechaRegistro.Date >= FechaInicio.Date &&
+                dv.IdVentaNavigation!.FechaRegistro.Date <= FechaFin.Date).ToListAsync();
 
             return listaResumen;
         }

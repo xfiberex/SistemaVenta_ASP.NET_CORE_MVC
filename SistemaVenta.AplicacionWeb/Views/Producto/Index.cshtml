@@ -12,19 +12,19 @@
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3 bg-header-black">
+    <div class="card-header py-3 bg-header-black d-flex align-items-center">
+        <i class="fas fa-box-open mr-2 text-white" style="opacity: 0.7;"></i>
         <h6 class="m-0 font-weight-bold text-white">Lista de Productos</h6>
     </div>
     <div class="card-body">
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row mb-3">
+            <div class="col-md-3 col-12">
                 <button class="btn btn-success" id="btnNuevo"><i class="fas fa-plus-circle"></i> Nuevo Producto</button>
             </div>
         </div>
         <hr />
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -43,7 +43,6 @@
                         
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -66,7 +65,14 @@
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="txtCodigoBarra">Codigo Barra</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtCodigoBarra" name="Codigo Barra">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form-control-sm input-validar" id="txtCodigoBarra" name="Codigo Barra" maxlength="15">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="btnGenerarCodigo" title="Generar código aleatorio">
+                                                <i class="fas fa-barcode"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="txtMarca">Marca</label>
@@ -119,8 +125,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar"><i class="fas fa-save mr-1"></i> Guardar</button>
+                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><i class="fas fa-times mr-1"></i> Cancelar</button>
             </div>
         </div>
     </div>

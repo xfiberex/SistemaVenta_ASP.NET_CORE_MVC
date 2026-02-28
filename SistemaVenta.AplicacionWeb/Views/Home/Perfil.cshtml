@@ -5,86 +5,68 @@
 }
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-lg-5 col-md-6 col-12 mb-4">
 
         <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-header-black">
-                <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-user"></i> Mis Datos</h6>
+            <div class="card-header py-3 bg-header-black d-flex align-items-center">
+                <i class="fas fa-user mr-2 text-white" style="opacity: 0.7;"></i>
+                <h6 class="m-0 font-weight-bold text-white">Mis Datos</h6>
             </div>
             <div class="card-body">
 
                 <form>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <img id="imgFoto" src="" class="rounded mx-auto d-block" style="width: auto; height: auto; max-height: 200px; max-width: 110px">
-                        </div>
+                    <div class="text-center mb-3">
+                        <img id="imgFoto" src="" class="rounded mx-auto d-block" style="width: auto; height: auto; max-height: 200px; max-width: 110px">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtNombre">Nombre</label>
-                            <input type="text" class="form-control form-control-sm" disabled id="txtNombre">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtNombre">Nombre</label>
+                        <input type="text" class="form-control form-control-sm" disabled id="txtNombre">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtCorreo">Correo</label>
-                            <input type="email" class="form-control form-control-sm" id="txtCorreo">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtCorreo">Correo</label>
+                        <input type="email" class="form-control form-control-sm" id="txtCorreo">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txTelefono">Telefono</label>
-                            <input type="text" class="form-control form-control-sm" id="txTelefono">
-                        </div>
+                    <div class="form-group">
+                        <label for="txTelefono">Telefono</label>
+                        <input type="text" class="form-control form-control-sm" id="txTelefono">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtRol">Rol</label>
-                            <input type="text" class="form-control form-control-sm" disabled id="txtRol">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtRol">Rol</label>
+                        <input type="text" class="form-control form-control-sm" disabled id="txtRol">
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-success btn-sm btn-block" id="btnGuardarCambios">Guardar datos</button>
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-success btn-sm btn-block" id="btnGuardarCambios">
+                        <i class="fas fa-save mr-1"></i> Guardar datos
+                    </button>
                 </form>
             </div>
         </div>
 
     </div>
-    <div class="col-sm-4">
+    <div class="col-lg-5 col-md-6 col-12 mb-4">
         <div class="card shadow mb-4">
-            <div class="card-header py-3 bg-header-black">
-                <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-key"></i> Cambiar Contraseña</h6>
+            <div class="card-header py-3 bg-header-black d-flex align-items-center">
+                <i class="fas fa-key mr-2 text-white" style="opacity: 0.7;"></i>
+                <h6 class="m-0 font-weight-bold text-white">Cambiar Contraseña</h6>
             </div>
             <div class="card-body">
                 <form>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtClaveActual">Contraseña Actual</label>
-                            <input type="password" class="form-control form-control-sm input-validar" id="txtClaveActual" name="Clave Actual">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtClaveActual">Contraseña Actual</label>
+                        <input type="password" class="form-control form-control-sm input-validar" id="txtClaveActual" name="Clave Actual">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtClaveNueva">Nueva Contraseña</label>
-                            <input type="password" class="form-control form-control-sm input-validar" id="txtClaveNueva" name="Clave Nueva">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtClaveNueva">Nueva Contraseña</label>
+                        <input type="password" class="form-control form-control-sm input-validar" id="txtClaveNueva" name="Clave Nueva">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="txtConfirmarClave">Confirmar Contraseña</label>
-                            <input type="password" class="form-control form-control-sm input-validar" id="txtConfirmarClave" name="Confirmar Clave">
-                        </div>
+                    <div class="form-group">
+                        <label for="txtConfirmarClave">Confirmar Contraseña</label>
+                        <input type="password" class="form-control form-control-sm input-validar" id="txtConfirmarClave" name="Confirmar Clave">
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-success btn-sm btn-block" id="btnCambiarClave">Guardar cambios</button>
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-success btn-sm btn-block" id="btnCambiarClave">
+                        <i class="fas fa-lock mr-1"></i> Guardar cambios
+                    </button>
                 </form>
             </div>
         </div>
